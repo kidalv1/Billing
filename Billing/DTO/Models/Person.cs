@@ -9,6 +9,7 @@ namespace DTO.Models
 {
   public abstract class Person
   {
+
     [Required]
     public string Firstname { get; set; }
     [Required]

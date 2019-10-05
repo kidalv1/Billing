@@ -9,7 +9,7 @@ namespace DTO.Models
 {
   public class DetailLine
   {
-    [Key
+    [Key]
     public int Id { get; set; }
     [Required]
     public string Item { get; set; }
