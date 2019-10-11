@@ -10,11 +10,10 @@ namespace DTO.Models
 {
   public class Customer: Person
   {
-    [Key]
     public int Id { get; set; }
-    [Required]
     public string Company { get; set; }
     public bool Visibility { get; set; }
+    public ICollection<Invoice> Invoices { get; set; }
     public Customer()
     {
       this.Visibility = true;

@@ -1,0 +1,17 @@
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\bin\Debug\DataContext.dll.config
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\bin\Debug\DataContext.dll
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\bin\Debug\DataContext.pdb
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\bin\Debug\DTO.dll
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\bin\Debug\EntityFramework.dll
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\bin\Debug\DTO.pdb
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\bin\Debug\DTO.dll.config
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\bin\Debug\EntityFramework.xml
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\Billing.DAL.csprojAssemblyReference.cache
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\Billing.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\Billing.DAL.csproj.CopyComplete
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\DataContext.dll
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\DataContext.pdb
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\DataContext.Migrations.Initial.resources
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\Billing.DAL.csproj.GenerateResource.cache

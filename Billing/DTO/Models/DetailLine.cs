@@ -9,18 +9,14 @@ namespace DTO.Models
 {
   public class DetailLine
   {
-    [Key]
     public int Id { get; set; }
-    [Required]
     public string Item { get; set; }
-    [Required]
-    public double PricePiece { get; set; }
-    [Required]
-    public double Discount { get; set; }
-    [Required]
+    public decimal PricePiece { get; set; }
+    public decimal Discount { get; set; }
     public int CountOfItems { get; set; }
+    public int InvoiceId { get; set; }
+    public Invoice Invoice { get; set; }
     public int VatId { get; set; }
-    [Required]
     public Vat Vat { get; set; }
     public DetailLine()
     {

@@ -1,0 +1,12 @@
+C:\Users\Vladik\Desktop\Billing\Billing\DTO\bin\Debug\DTO.dll.config
+C:\Users\Vladik\Desktop\Billing\Billing\DTO\bin\Debug\DTO.dll
+C:\Users\Vladik\Desktop\Billing\Billing\DTO\bin\Debug\DTO.pdb
+C:\Users\Vladik\Desktop\Billing\Billing\DTO\bin\Debug\EntityFramework.dll
+C:\Users\Vladik\Desktop\Billing\Billing\DTO\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Vladik\Desktop\Billing\Billing\DTO\bin\Debug\EntityFramework.xml
+C:\Users\Vladik\Desktop\Billing\Billing\DTO\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Vladik\Desktop\Billing\Billing\DTO\obj\Debug\Billing.DTO.csproj.CoreCompileInputs.cache
+C:\Users\Vladik\Desktop\Billing\Billing\DTO\obj\Debug\Billing.DTO.csproj.CopyComplete
+C:\Users\Vladik\Desktop\Billing\Billing\DTO\obj\Debug\DTO.dll
+C:\Users\Vladik\Desktop\Billing\Billing\DTO\obj\Debug\DTO.pdb
+C:\Users\Vladik\Desktop\Billing\Billing\DTO\obj\Debug\Billing.DTO.csprojAssemblyReference.cache

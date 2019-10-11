@@ -9,10 +9,9 @@ namespace DTO.Models
 {
   public class Vat
   {
-    [Key]
     public int Id { get; set; }
-    [Required]
-    public double Percentage { get; set; }
+    public int Percentage { get; set; }
+    public ICollection<DetailLine> DetailLines { get; set; }
     public Vat()
     {
 

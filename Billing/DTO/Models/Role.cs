@@ -9,14 +9,11 @@ namespace DTO.Models
 {
   public class Role
   {
-    [Key]
     public int Id { get; set; }
-    [Required]
     public string NameRole { get; set; }
-    public List<UserRole> UserRoles { get; set; }
+    public ICollection<UserRole> UserRoles { get; set; }
     public Role()
     {
-      this.UserRoles = new List<UserRole>();
     }
   }
 }
