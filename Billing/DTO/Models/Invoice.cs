@@ -17,7 +17,7 @@ namespace DTO.Models
     public int CustomerId { get; set; }
     public Customer Customer { get; set; }
     public int UserId { get; set; }
-    public User User { get; set; }
+    public string User { get; set; }
     public ICollection<DetailLine> DetailLines { get; set; }
     public Invoice()
     {

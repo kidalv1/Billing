@@ -36,9 +36,11 @@ namespace DataContext.Configurations
      .HasColumnType("bit")
      .IsRequired();
 
-      this.HasRequired<User>(i => i.User)
-    .WithMany(i => i.Invoices)
-    .HasForeignKey<int>(s => s.UserId);
+      this.Property(d => d.User)
+     .HasColumnName("User")
+     .HasColumnOrder(5)
+     .HasColumnType("varchar")
+     .IsRequired();
 
       this.HasRequired<Customer>(i => i.Customer)
     .WithMany(c => c.Invoices)

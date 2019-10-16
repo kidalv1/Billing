@@ -9,6 +9,6 @@ namespace DataContext
 {
   public interface IData 
   {
-    IQueryable<User> Users { get; } 
+    IQueryable<Customer> Customers { get; } 
   }
 }

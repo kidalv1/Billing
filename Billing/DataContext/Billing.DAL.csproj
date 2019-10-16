@@ -54,19 +54,16 @@
     <Compile Include="Configurations\CustomerConfiguration.cs" />
     <Compile Include="Configurations\DetailLineConfiguration.cs" />
     <Compile Include="Configurations\InvoiceConfiguration.cs" />
-    <Compile Include="Configurations\RoleConfiguration.cs" />
-    <Compile Include="Configurations\UserConfiguration.cs" />
-    <Compile Include="Configurations\UserRoleConfiguration.cs" />
     <Compile Include="Configurations\VatConfiguration.cs" />
     <Compile Include="Context\Data.cs" />
     <Compile Include="IData.cs" />
-    <Compile Include="Migrations\201910111352526_Initial.cs" />
-    <Compile Include="Migrations\201910111352526_Initial.designer.cs">
-      <DependentUpon>201910111352526_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201910151036017_Initial.cs" />
+    <Compile Include="Migrations\201910151036017_Initial.designer.cs">
+      <DependentUpon>201910151036017_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\UserRepo.cs" />
+    <Compile Include="Repositories\CustumerRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -79,11 +76,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910111352526_Initial.resx">
-      <DependentUpon>201910111352526_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910151036017_Initial.resx">
+      <DependentUpon>201910151036017_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

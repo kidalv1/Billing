@@ -14,27 +14,21 @@ namespace DataContext
     public DbSet<Invoice> Invoices { get; set; }
     public DbSet<Vat> Vats { get; set; }
     public DbSet<DetailLine> DetailLines { get; set; }
-    public DbSet<User> Users { get; set; }
     public DbSet<Customer> Customers { get; set; }
-    public DbSet<Role> Roles { get; set; }
 
-    IQueryable<User> IData.Users
-    {
-      get { return Users; }
-    }
+    IQueryable<Customer> IData.Customers => throw new System.NotImplementedException();
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
       //Configure default schema
-      modelBuilder.HasDefaultSchema("Admin");
+      modelBuilder.HasDefaultSchema("dbo");
 
       //Map entity to table
-      modelBuilder.Configurations.Add(new UserConfiguration());
       modelBuilder.Configurations.Add(new CustomerConfiguration());
-      modelBuilder.Configurations.Add(new RoleConfiguration());
       modelBuilder.Configurations.Add(new VatConfiguration());
       modelBuilder.Configurations.Add(new DetailLineConfiguration());
       modelBuilder.Configurations.Add(new InvoiceConfiguration());
+      
     }
   }
 }
