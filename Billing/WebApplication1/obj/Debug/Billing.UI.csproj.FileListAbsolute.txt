@@ -103,3 +103,11 @@ C:\Users\Vladik\Desktop\Billing\Billing\WebApplication1\bin\roslyn\vbc.exe.confi
 C:\Users\Vladik\Desktop\Billing\Billing\WebApplication1\bin\roslyn\vbc.rsp
 C:\Users\Vladik\Desktop\Billing\Billing\WebApplication1\bin\roslyn\VBCSCompiler.exe
 C:\Users\Vladik\Desktop\Billing\Billing\WebApplication1\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Vladik\Desktop\Billing\Billing\WebApplication1\bin\Billing.BLL.dll
+C:\Users\Vladik\Desktop\Billing\Billing\WebApplication1\bin\DataContext.dll
+C:\Users\Vladik\Desktop\Billing\Billing\WebApplication1\bin\DTO.dll
+C:\Users\Vladik\Desktop\Billing\Billing\WebApplication1\bin\Billing.BLL.pdb
+C:\Users\Vladik\Desktop\Billing\Billing\WebApplication1\bin\DataContext.pdb
+C:\Users\Vladik\Desktop\Billing\Billing\WebApplication1\bin\DataContext.dll.config
+C:\Users\Vladik\Desktop\Billing\Billing\WebApplication1\bin\DTO.pdb
+C:\Users\Vladik\Desktop\Billing\Billing\WebApplication1\bin\DTO.dll.config

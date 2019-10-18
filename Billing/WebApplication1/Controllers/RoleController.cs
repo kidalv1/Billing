@@ -1,22 +1,42 @@
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class RoleController : Controller
+  [Authorize(Roles = "Admin")]
+  public class RoleController : Controller
     {
-        // GET: Role
-        public ActionResult Index()
-        {
-            return View();
-        }
+    ApplicationDbContext context;
+    public RoleController()
+    {
+      context = new ApplicationDbContext();
+    }
 
-        public ActionResult AddRole()
+    public ActionResult Index()
     {
-      return View();
+      var Roles = context.Roles.ToList();
+      return View(Roles);
+    }
+
+    // GET: Role
+    public ActionResult Create()
+        {
+          IdentityRole role = new IdentityRole();
+            return View(role);
+        }
+    [HttpPost]
+    public ActionResult Create(IdentityRole Role)
+    {
+      var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+      context.Roles.Add(Role);
+      context.SaveChanges();
+      return RedirectToAction("Index");
     }
     }
 }

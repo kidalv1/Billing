@@ -44,5 +44,15 @@
     <Compile Include="BLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataContext\Billing.DAL.csproj">
+      <Project>{95c99b72-1be9-4e5e-9ba9-17d157965eb7}</Project>
+      <Name>Billing.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\Billing.DTO.csproj">
+      <Project>{62EC15FF-BA97-454D-B1AA-2BDABA5C719F}</Project>
+      <Name>Billing.DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

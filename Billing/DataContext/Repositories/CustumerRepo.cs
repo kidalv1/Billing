@@ -7,10 +7,14 @@ using System.Threading.Tasks;
 
 namespace DataContext.Repositories
 {
-  class CustumerRepo
+  public class CustumerRepo
   {
     private Data data = new Data();
-
+    public void AddCutomer(Customer customer)
+    {
+      data.Customers.Add(customer);
+      data.SaveChanges();
+    }
     public void addUser(Customer user)
     {
       data.Customers.Add(user);
