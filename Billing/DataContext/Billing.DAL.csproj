@@ -57,9 +57,9 @@
     <Compile Include="Configurations\VatConfiguration.cs" />
     <Compile Include="Context\Data.cs" />
     <Compile Include="IData.cs" />
-    <Compile Include="Migrations\201910151036017_Initial.cs" />
-    <Compile Include="Migrations\201910151036017_Initial.designer.cs">
-      <DependentUpon>201910151036017_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201910181214486_Initial.cs" />
+    <Compile Include="Migrations\201910181214486_Initial.designer.cs">
+      <DependentUpon>201910181214486_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,8 +76,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910151036017_Initial.resx">
-      <DependentUpon>201910151036017_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910181214486_Initial.resx">
+      <DependentUpon>201910181214486_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

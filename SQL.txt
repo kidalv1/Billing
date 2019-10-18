@@ -1,0 +1,5 @@
+insert into AspNetRoles(id , Name ) values(1 , 'Admin')
+insert into AspNetRoles(id , Name ) values(2 , 'employee')
+
+
+insert into AspNetUserRoles(UserId , RoleId) values ((select id from AspNetUsers where Email= 'vladik1719@hotmail.com'),1)

@@ -1,5 +1,8 @@
-﻿using Microsoft.Owin;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin;
 using Owin;
+using WebApplication1.Models;
 
 [assembly: OwinStartupAttribute(typeof(WebApplication1.Startup))]
 namespace WebApplication1
@@ -10,5 +13,6 @@ namespace WebApplication1
         {
             ConfigureAuth(app);
         }
-    }
+    // In this method we will create default User roles and Admin user for login    
+  }
 }

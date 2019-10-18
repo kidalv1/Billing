@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 
 namespace DTO.Models
 {
-  public class Customer: Person
+  public class Customer
   {
+    public string Firstname { get; set; }
+    public string Lastname { get; set; }
+    public string Email { get; set; }
     public int Id { get; set; }
     public string Company { get; set; }
     public bool Visibility { get; set; }
