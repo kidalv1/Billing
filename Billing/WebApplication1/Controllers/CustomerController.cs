@@ -5,17 +5,19 @@ using DTO.Models;
 
 namespace WebApplication1.Controllers
 {
+  [Authorize]
   public class CustomerController : Controller
     {
-    BLL bll;
+    CustomerBLL customerBLL;
     public CustomerController()
     {
-      bll = new BLL();
+      customerBLL = new CustomerBLL();
     }
         // GET: Custumer
         public ActionResult Index()
         {
-            return View();
+      
+            return View(customerBLL.GetVisibilityCustomers());
         }
     public ActionResult CreateCustomer()
     {
@@ -26,7 +28,35 @@ namespace WebApplication1.Controllers
     public ActionResult CreateCustomer(Customer customer)
     {
 
-      bll.AddCustomer(customer);
+      customerBLL.AddCustomer(customer);
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Detail(int id)
+    {
+      return View(customerBLL.FindById(id));
+    }
+    public ActionResult Delete(int id)
+    {
+      return View(customerBLL.FindById(id));
+    }
+
+    [HttpPost]
+    [ActionName("Delete")]
+    public ActionResult DeleteCostumer(int id)
+    {
+      customerBLL.RemoveCustomer(customerBLL.FindById(id));
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Edit(int id)
+    {
+      return View(customerBLL.FindById(id));
+    }
+    [HttpPost]
+    public ActionResult Edit(Customer customer)
+    {
+      customerBLL.EditCustomer(customer);
       return RedirectToAction("Index");
     }
   }

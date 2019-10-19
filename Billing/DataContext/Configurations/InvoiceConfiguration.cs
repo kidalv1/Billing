@@ -16,7 +16,7 @@ namespace DataContext.Configurations
        .Property(c => c.Id)
        .HasColumnName("ID")
        .HasColumnOrder(0)
-       .HasColumnType("int")
+       .HasColumnType("varchar")
        .IsRequired();
 
       this.Property(d => d.Date)
@@ -40,6 +40,12 @@ namespace DataContext.Configurations
      .HasColumnName("User")
      .HasColumnOrder(5)
      .HasColumnType("varchar")
+     .IsRequired();
+
+      this.Property(d => d.InvoiceCode)
+     .HasColumnName("InvoiceCode")
+     .HasColumnOrder(6)
+     .HasColumnType("InvoiceCode")
      .IsRequired();
 
       this.HasRequired<Customer>(i => i.Customer)

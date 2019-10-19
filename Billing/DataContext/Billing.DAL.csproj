@@ -56,6 +56,7 @@
     <Compile Include="Configurations\InvoiceConfiguration.cs" />
     <Compile Include="Configurations\VatConfiguration.cs" />
     <Compile Include="Context\Data.cs" />
+    <Compile Include="Exeptions\NotExistExeption.cs" />
     <Compile Include="IData.cs" />
     <Compile Include="Migrations\201910181214486_Initial.cs" />
     <Compile Include="Migrations\201910181214486_Initial.designer.cs">
@@ -64,6 +65,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CustumerRepo.cs" />
+    <Compile Include="Repositories\InvoiceRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
