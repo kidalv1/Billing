@@ -29,6 +29,7 @@
                         Reason = c.String(maxLength: 8000, unicode: false),
                         Active = c.Boolean(nullable: false),
                         User = c.String(nullable: false, maxLength: 8000, unicode: false),
+                        InvoiceCode = c.String(nullable: false, maxLength: 8000, unicode: false),
                         CustomerId = c.Int(nullable: false),
                         UserId = c.Int(nullable: false),
                     })

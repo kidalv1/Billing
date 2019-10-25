@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataContext.Repositories
 {
-  public class CustumerRepo
+  public class CustomerRepo
   {
     private Data data = new Data();
     public void AddCutomer(Customer customer)

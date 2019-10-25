@@ -15,3 +15,5 @@ C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\DataContext.dll
 C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\DataContext.pdb
 C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\DataContext.Migrations.Initial.resources
 C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\Billing.DAL.csproj.GenerateResource.cache
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\DataContext.Migrations.removeuser.resources
+C:\Users\Vladik\Desktop\Billing\Billing\DataContext\obj\Debug\DataContext.Migrations.AddFinished.resources

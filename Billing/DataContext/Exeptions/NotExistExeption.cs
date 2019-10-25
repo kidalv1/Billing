@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataContext.Exeptions
 {
-  class NotExistExeption : Exception
+  public class NotExistExeption : Exception
   {
     public NotExistExeption() :base("this customer is not exist")
     {

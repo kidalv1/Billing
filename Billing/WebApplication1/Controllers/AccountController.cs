@@ -134,18 +134,19 @@ namespace WebApplication1.Controllers
             }
         }
 
-        //
-        // GET: /Account/Register
-        [AllowAnonymous]
+    //
+    // GET: /Account/Register
+    [Authorize(Roles = "Admin")]
+
         public ActionResult Register()
         {
             return View();
         }
 
-        //
-        // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
+    //
+    // POST: /Account/Register
+    [Authorize(Roles = "Admin")]
+    [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {

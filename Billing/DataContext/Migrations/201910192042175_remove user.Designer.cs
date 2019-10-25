@@ -7,13 +7,13 @@ namespace DataContext.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.3.0")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class removeuser : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(removeuser));
         
         string IMigrationMetadata.Id
         {
-            get { return "201910181214486_Initial"; }
+            get { return "201910192042175_remove user"; }
         }
         
         string IMigrationMetadata.Source

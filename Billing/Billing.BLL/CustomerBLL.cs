@@ -11,10 +11,10 @@ namespace Billing.BLL
 {
     public class CustomerBLL
     {
-    CustumerRepo customerRepo;
+    CustomerRepo customerRepo;
     public CustomerBLL()
     {
-      customerRepo = new CustumerRepo();
+      customerRepo = new CustomerRepo();
     }
     public void AddCustomer(Customer customer)
     {
