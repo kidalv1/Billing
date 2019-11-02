@@ -17,26 +17,21 @@
 
 
 
-  <div class="form-group">
-    @Html.LabelFor(model => model.CustomerId, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-      @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control" } })
-      @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
-    </div>
-  </div>
-  <select name="cars">
-    @foreach (var item in ViewBag.cutomers)
-    {
-      <option value= @item.Email>@item.Email</option>
-    }
+  <form>
+    <select name="customers" id="customers">
+      @foreach (var item in ViewBag.cutomers)
+      {
+        <option value=@item.Id>@item.Firstname @item.Lastname</option>
+      }
 
-  </select>
-
-  <div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-      <input type="submit" value="Create" class="btn btn-default" />
+    </select>
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" class="btn btn-default" />
+      </div>
     </div>
-  </div>
+  </form>
+
 </div>
   <h3>
     <strong > @ViewBag.ex </strong>

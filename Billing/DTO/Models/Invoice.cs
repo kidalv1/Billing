@@ -13,7 +13,7 @@ namespace DTO.Models
     public int Id { get; set; }
     public DateTime Date { get; set; }
     public bool Active { get; set; }
-    public string Reason { get; set; }
+    public string Reason { get; set; }  
     public int CustomerId { get; set; }
     public Customer Customer { get; set; }
     public string User { get; set; }

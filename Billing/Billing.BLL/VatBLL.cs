@@ -1,3 +1,4 @@
+using DataContext.Repositories;
 using DTO.Models;
 using System;
 using System.Collections.Generic;
@@ -5,18 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataContext.Repositories
+namespace Billing.BLL
 {
-  public class VatRepo
+  public class VatBLL
   {
-    private Data data = new Data();
-    public Vat GetVat(int id)
+    VatRepo vatRepo;
+    public VatBLL()
     {
-      return data.Vats.Find(id);
+      vatRepo = new VatRepo();
     }
+
     public List<Vat> GetVats()
     {
-     return data.Vats.ToList();
+      return vatRepo.GetVats();
     }
   }
 }

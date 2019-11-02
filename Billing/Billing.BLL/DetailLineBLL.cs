@@ -11,13 +11,19 @@ namespace Billing.BLL
   public class DetailLineBLL
   {
     DetailLineRepo detailLineRepo;
+    InvoiceRepo invoiceRepo;
+    VatRepo vatRepo;
     public DetailLineBLL()
     {
+      vatRepo = new VatRepo();
+      invoiceRepo = new InvoiceRepo();
       detailLineRepo = new DetailLineRepo();
     }
 
-    public void CreateDetailLine(DetailLine detailLine)
+    public void CreateDetailLine(DetailLine detailLine , int idOfVat , int idOfInvoice)
     {
+      detailLine.InvoiceId = idOfInvoice;
+      detailLine.VatId = idOfVat;
       this.detailLineRepo.CreateDetailLine(detailLine);
     }
 

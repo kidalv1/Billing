@@ -45,6 +45,7 @@
     <Compile Include="DetailLineBLL.cs" />
     <Compile Include="InvoiceBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VatBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataContext\Billing.DAL.csproj">

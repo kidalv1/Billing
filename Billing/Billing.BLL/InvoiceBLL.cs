@@ -12,11 +12,13 @@ namespace Billing.BLL
   {
     static private int mouth = 0;
     InvoiceRepo invoiceRepo;
+    CustomerRepo CustomerRepo;
     public InvoiceBLL()
     {
+      CustomerRepo = new CustomerRepo();
       invoiceRepo = new InvoiceRepo();
     }
-    public void AddInvoice(Invoice invoice , string userName)
+    public void AddInvoice(Invoice invoice , string userName, int idOfCustomer)
     {
       Invoice lastInvoice = invoiceRepo.GetLastInvoice();
       string[] lastInvoiceCode = lastInvoice.InvoiceCode.Split('-');
@@ -31,6 +33,8 @@ namespace Billing.BLL
       invoice.Date = DateTime.Now;
       string invoiceCode = DateTime.Today.Year.ToString() + DateTime.Today.Month.ToString() +  "-" + count.ToString("0000");
       invoice.InvoiceCode = invoiceCode;
+      Customer customer = CustomerRepo.FindById(idOfCustomer);
+      invoice.CustomerId = customer.Id;
       invoiceRepo.AddInvoice(invoice);
     }
     public List<Invoice> GetVisibilityInvoice()

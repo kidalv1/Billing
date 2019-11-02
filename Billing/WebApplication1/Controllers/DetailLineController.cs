@@ -12,8 +12,12 @@ namespace WebApplication1.Controllers
     public class DetailLineController : Controller
     {
     DetailLineBLL detailLineBLL;
+    VatBLL vatBLL;
+    InvoiceBLL invoiceBLL;
     public DetailLineController()
     {
+      this.invoiceBLL = new InvoiceBLL();
+      this.vatBLL = new VatBLL();
       this.detailLineBLL = new DetailLineBLL();
     }
         // GET: DetailLine
@@ -23,6 +27,9 @@ namespace WebApplication1.Controllers
         }
         public ActionResult Create()
     {
+      ViewBag.Invoices = invoiceBLL.GetVisibilityInvoice();
+      ViewBag.Vats = vatBLL.GetVats();
+
       return View();
     }
 
@@ -30,6 +37,8 @@ namespace WebApplication1.Controllers
     [ActionName("Create")]
     public ActionResult CreateDetailLine(DetailLine detailLine )
     {
+      string idOfInvoice = Request.Form["Invoice"];
+      string idOfVat = Request.Form["Vat"];
       try
       {
         detailLineBLL.CreateDetailLine(detailLine);

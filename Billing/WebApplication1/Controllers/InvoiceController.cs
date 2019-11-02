@@ -32,10 +32,11 @@ namespace WebApplication1.Controllers
     [ActionName("Create")]
     public ActionResult CreateInvoice(Invoice invoice)
     {
-
+      string idOfCustomer = Request.Form["customers"];
+      
       try
       {
-        invoiceBLL.AddInvoice(invoice, User.Identity.Name);
+        invoiceBLL.AddInvoice(invoice, User.Identity.Name , int.Parse(idOfCustomer));
       }
       catch(NotExistExeption ex)
       {
