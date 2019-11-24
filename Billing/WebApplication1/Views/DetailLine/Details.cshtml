@@ -1,0 +1,82 @@
+@model DTO.Models.DetailLine
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>DetailLine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+      <dt>
+        @Html.DisplayNameFor(model => model.Item)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Item)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.PricePiece)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.PricePiece)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.Discount)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Discount)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.CountOfItems)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.CountOfItems)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.InvoiceId)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.InvoiceId)
+      </dd>
+
+      <dt>
+        VAT
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Vat.Percentage)%
+      </dd>
+
+      <dt>
+        Price with VAT
+      </dt>
+
+      <dd>
+        @ViewBag.priceWithoutVAT
+      </dd>
+
+      <dt>
+        Price without VAT
+      </dt>
+
+      <dd>
+        @ViewBag.priceWithVat
+      </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -8,20 +8,16 @@ using System.Threading.Tasks;
 
 namespace DataContext.Repositories
 {
-  public class DetailLineRepo
+  public class DetailLineRepo : ICRUD<DetailLine>
   {
     private Data data = new Data();
-    public void CreateDetailLine(DetailLine detailLine)
+    public void Add(DetailLine detailLine)
     {
-      try
-      {
+
         this.data.DetailLines.Add(detailLine);
         data.SaveChanges();
-      }
-      catch(Exception ex)
-      {
-        throw new AllFieldReaquiredExeption();
-      }
+      
+
       
       
     }
@@ -34,5 +30,26 @@ namespace DataContext.Repositories
       }
       return data.DetailLines.ToList();
     }
+
+    public DetailLine FindById(int id)
+    {
+      return data.DetailLines.Find(id);
+    }
+
+    public void Remove(DetailLine detailLine)
+    {
+      data.DetailLines.Remove(detailLine);
+      data.SaveChanges();
+    }
+    public void Edit(DetailLine detailLine)
+    {
+      DetailLine newDetailLine = FindById(detailLine.Id);
+      newDetailLine.Item = detailLine.Item;
+      newDetailLine.PricePiece = detailLine.PricePiece;
+      newDetailLine.CountOfItems = detailLine.CountOfItems;
+      newDetailLine.Discount = detailLine.Discount;
+      data.SaveChanges();
+    }
+
   }
 }

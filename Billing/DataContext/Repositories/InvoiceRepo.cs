@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DataContext.Repositories
 {
-  public class InvoiceRepo
+  public class InvoiceRepo : ICRUD<Invoice>
   {
 
     private Data data = new Data();
-    public void AddInvoice(Invoice invoice)
+    public void Add(Invoice invoice)
     {
       
 
@@ -26,16 +26,25 @@ namespace DataContext.Repositories
              where i.Active
              select i;
 
+      foreach (Invoice item in invoices)
+      {
+        item.Customer = data.Customers.Find(item.CustomerId);
+      }
       return invoices.ToList();
     }
+    public List<Invoice> GetNotFinishedInvoices()
+    {
+      IEnumerable<Invoice> invoices =
+             from i in data.Invoices.ToList()
+             where !i.Finished
+             select i;
+
+      return invoices.ToList();
+    } 
 
     public Invoice FindById(int id)
     {
       Invoice invoice = data.Invoices.Find(id);
-      if (invoice.Finished)
-      {
-        throw new NotExistExeption();
-      }
       IEnumerable<DetailLine> detailLines =
              from d in data.DetailLines.ToList()
              where d.InvoiceId == id
@@ -45,12 +54,13 @@ namespace DataContext.Repositories
       {
         item.Vat = data.Vats.Find(item.VatId);
       }
+      invoice.Customer = data.Customers.Find(invoice.CustomerId);
       invoice.DetailLines = detailLines.ToList();
       return invoice;
     }
-    public void RemoveInvoice(int id)
+    public void Remove(Invoice invoice)
     {
-      data.Invoices.Remove(FindById(id));
+      data.Invoices.Remove(invoice);
       data.SaveChanges();
     }
     public void RemoveInvoice(int id , string reason)
@@ -62,10 +72,10 @@ namespace DataContext.Repositories
     }
 
 
-    public void EdtiInvoice(Invoice invoice)
+    public void Edit(Invoice invoice)
     {
-      Invoice oldInvoice = FindById(invoice.Id);
-      oldInvoice.Finished = invoice.Finished;
+      Invoice newInvoice = FindById(invoice.Id);
+      newInvoice.Finished = invoice.Finished;
       data.SaveChanges();
     }
     public Invoice GetLastInvoice()
@@ -75,6 +85,13 @@ namespace DataContext.Repositories
 
 
     }
+
+    public List<Invoice> GetAll()
+    {
+      return data.Invoices.ToList();
+    }
+
+
   }
 
   

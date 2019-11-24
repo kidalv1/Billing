@@ -25,6 +25,7 @@ namespace WebApplication1.Controllers
       return View();
     }
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public ActionResult CreateCustomer(Customer customer)
     {
 
@@ -42,6 +43,7 @@ namespace WebApplication1.Controllers
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     [ActionName("Delete")]
     public ActionResult DeleteCostumer(int id)
     {
@@ -54,6 +56,7 @@ namespace WebApplication1.Controllers
       return View(customerBLL.FindById(id));
     }
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public ActionResult Edit(Customer customer)
     {
       customerBLL.EditCustomer(customer);

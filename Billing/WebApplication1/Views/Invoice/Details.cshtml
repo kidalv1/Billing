@@ -25,11 +25,12 @@
         @Html.DisplayFor(model => model.Finished)
       </dd>
       <dt>
-        @Html.DisplayNameFor(model => model.CustomerId)
+        @Html.DisplayNameFor(model => model.Customer)
       </dt>
 
       <dd>
-        @Html.DisplayFor(model => model.CustomerId)
+        @Html.DisplayFor(model => model.Customer.Firstname)
+        @Html.DisplayFor(model => model.Customer.Lastname)
       </dd>
 
       <dt>
@@ -64,37 +65,46 @@
           <th>
             Percentage
           </th>
-
           <th>
-            Price
+            Price without VAT
+          </th>
+          <th>
+            Price with VAT
           </th>
           <th></th>
         </tr>
+        @for (int i = 0; i < Model.DetailLines.Count; i++)
+        {
+        <tr>
+          <td>
+            @Html.DisplayFor(modelItem => Model.DetailLines.ToList()[i].Item)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => Model.DetailLines.ToList()[i].PricePiece)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => Model.DetailLines.ToList()[i].Discount)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => Model.DetailLines.ToList()[i].CountOfItems)
+          </td>
 
+          <td>
+            @Model.DetailLines.ToList()[i].Vat.Percentage %
+          </td>
+          <td>
+            @ViewBag.pricesWithoutVat[i]
+          </td>
+          <td>
+            @ViewBag.prices[i]
+          </td>
+
+
+        </tr>
+        }
         @foreach (var item in Model.DetailLines)
         {
-          <tr>
-            <td>
-              @Html.DisplayFor(modelItem => item.Item)
-            </td>
-            <td>
-              @Html.DisplayFor(modelItem => item.PricePiece)
-            </td>
-            <td>
-              @Html.DisplayFor(modelItem => item.Discount)
-            </td>
-            <td>
-              @Html.DisplayFor(modelItem => item.CountOfItems)
-            </td>
 
-            <td>
-              @item.GetVatPercantage()%
-            </td>
-            <td>
-              @item.GetTotalPrice()
-            </td>
-
-          </tr>
         }
       </table>
       <p>

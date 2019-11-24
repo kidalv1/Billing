@@ -21,13 +21,10 @@
       @Html.DisplayNameFor(model => model.Active)
     </th>
     <th>
-      @Html.DisplayNameFor(model => model.Active)
+      @Html.DisplayNameFor(model => model.Finished)
     </th>
     <th>
-      @Html.DisplayNameFor(model => model.Reason)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.CustomerId)
+      @Html.DisplayNameFor(model => model.Customer)
     </th>
     <th>
       Email of user
@@ -53,10 +50,8 @@
       @Html.DisplayFor(modelItem => item.Finished)
     </td>
     <td>
-      @Html.DisplayFor(modelItem => item.Reason)
-    </td>
-    <td>
-      @Html.DisplayFor(modelItem => item.CustomerId)
+      @Html.DisplayFor(modelItem => item.Customer.Firstname)
+      @Html.DisplayFor(modelItem => item.Customer.Lastname)
     </td>
     <td>
       @Html.DisplayFor(modelItem => item.User)

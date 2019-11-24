@@ -18,7 +18,7 @@ namespace Billing.BLL
 
     public List<Vat> GetVats()
     {
-      return vatRepo.GetVats();
+      return vatRepo.GetAll();
     }
   }
 }

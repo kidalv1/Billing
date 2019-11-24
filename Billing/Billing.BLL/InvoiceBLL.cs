@@ -13,8 +13,10 @@ namespace Billing.BLL
     static private int mouth = 0;
     InvoiceRepo invoiceRepo;
     CustomerRepo CustomerRepo;
+    DetailLineBLL DetailLineBLL;
     public InvoiceBLL()
     {
+      DetailLineBLL = new DetailLineBLL();
       CustomerRepo = new CustomerRepo();
       invoiceRepo = new InvoiceRepo();
     }
@@ -35,7 +37,7 @@ namespace Billing.BLL
       invoice.InvoiceCode = invoiceCode;
       Customer customer = CustomerRepo.FindById(idOfCustomer);
       invoice.CustomerId = customer.Id;
-      invoiceRepo.AddInvoice(invoice);
+      invoiceRepo.Add(invoice);
     }
     public List<Invoice> GetVisibilityInvoice()
     {
@@ -55,9 +57,7 @@ namespace Billing.BLL
       double price = 0;
       foreach (var item in invoice.DetailLines)
       {
-        double priceWithoutDisc = double.Parse(item.PricePiece.ToString()) * double.Parse(item.CountOfItems.ToString());
-        double disc = (priceWithoutDisc / 100 * double.Parse(item.Discount.ToString()));
-        price = price + (priceWithoutDisc - disc);
+        price = price + DetailLineBLL.GetPriceOfDetailLineWithoutVat(item);
       }
       return price;
     }
@@ -69,22 +69,46 @@ namespace Billing.BLL
       double price = 0;
       foreach (var item in invoice.DetailLines)
       {
-        double priceWithoutDisc = double.Parse(item.PricePiece.ToString()) * double.Parse(item.CountOfItems.ToString());
-        double disc = (priceWithoutDisc / 100 * double.Parse(item.Discount.ToString()));
-        double priceWithDisc = priceWithoutDisc - disc;
-        double vat = priceWithDisc / 100 * item.Vat.Percentage;
-        price = price + priceWithDisc + vat;
-        price = Math.Round(price, 2);
+        price = price + DetailLineBLL.GetPriceOfDetailLineWithVat(item);
       }
       return price;
     }
     public void RemoveInvoice(int id)
     {
-      invoiceRepo.RemoveInvoice(id);
+      invoiceRepo.Remove(FindById(id));
     }
     public void EditInvoice(Invoice invoice)
     {
-      invoiceRepo.EdtiInvoice(invoice);
+      invoiceRepo.Edit(invoice);
     }
+    public double[] GetPriceOfDatailLineOfInvoiceWithVat(int idOfInvoice)
+    {
+      Invoice invoice = invoiceRepo.FindById(idOfInvoice);
+      double[] prices = new double[invoice.DetailLines.Count];
+      List<DetailLine> detailLines = invoice.DetailLines.ToList();
+      for (int i = 0; i < invoice.DetailLines.Count; i++)
+      {
+        prices[i] = DetailLineBLL.GetPriceOfDetailLineWithVat(detailLines[i]);
+      }
+      return prices;
+    }
+
+    public double[] GetPriceOfDatailLineOfInvoiceWithoutVat(int idOfInvoice)
+    {
+      Invoice invoice = invoiceRepo.FindById(idOfInvoice);
+      double[] prices = new double[invoice.DetailLines.Count];
+      List<DetailLine> detailLines = invoice.DetailLines.ToList();
+      for (int i = 0; i < invoice.DetailLines.Count; i++)
+      {
+        prices[i] = DetailLineBLL.GetPriceOfDetailLineWithoutVat(detailLines[i]);
+      }
+      return prices;
+    }
+    public List<Invoice> GetNotFinishedInvoices()
+    {
+      return invoiceRepo.GetNotFinishedInvoices();
+    }
+
+
   }
 }

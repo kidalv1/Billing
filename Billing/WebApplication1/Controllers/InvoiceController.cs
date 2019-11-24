@@ -10,6 +10,7 @@ using DTO.Models;
 
 namespace WebApplication1.Controllers
 {
+  [Authorize]
   public class InvoiceController : Controller
   {
     CustomerBLL customerBLL;
@@ -29,21 +30,12 @@ namespace WebApplication1.Controllers
       return View();
     }
     [HttpPost]
+    [ValidateAntiForgeryToken]
     [ActionName("Create")]
-    public ActionResult CreateInvoice(Invoice invoice)
+    public ActionResult Create(Invoice invoice)
     {
       string idOfCustomer = Request.Form["customers"];
-      
-      try
-      {
-        invoiceBLL.AddInvoice(invoice, User.Identity.Name , int.Parse(idOfCustomer));
-      }
-      catch(NotExistExeption ex)
-      {
-        ViewBag.ex = ex.Message;
-        return View();
-      }
-      
+      invoiceBLL.AddInvoice(invoice, User.Identity.Name , int.Parse(idOfCustomer));
       return RedirectToAction("Index");
     }
 
@@ -58,10 +50,13 @@ namespace WebApplication1.Controllers
       ViewBag.invoice = invoice;
       ViewBag.priceWithoutVAT = invoiceBLL.GetTotalPrice(id);
       ViewBag.priceWithVat = invoiceBLL.GetTotalPriceWithVAT(id);
+      ViewBag.pricesWithoutVat = invoiceBLL.GetPriceOfDatailLineOfInvoiceWithoutVat(id);
+      ViewBag.prices = invoiceBLL.GetPriceOfDatailLineOfInvoiceWithVat(id);
       return View(invoice);
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     [ActionName("Delete")]
     public ActionResult DeleteInvoice(int id)
     {
@@ -77,12 +72,20 @@ namespace WebApplication1.Controllers
       }
       return RedirectToAction("Index");
     }
-    [HttpGet]
     public ActionResult Edit(int id)
     {
-      return View(invoiceBLL.FindById(id));
-    }
+      Invoice invoice = invoiceBLL.FindById(id);
+      if (invoice.Finished)
+      {
+        return RedirectToAction("Index");
+      }
+      else
+      {
+        return View(invoice);
+      }
+     }
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public ActionResult Edit(Invoice invoice)
     {
       invoiceBLL.EditInvoice(invoice);

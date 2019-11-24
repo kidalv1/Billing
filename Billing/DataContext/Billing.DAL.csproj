@@ -76,6 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DetailLineRepo.cs" />
     <Compile Include="Repositories\CustomerRepo.cs" />
+    <Compile Include="Repositories\ICRUD.cs" />
     <Compile Include="Repositories\InvoiceRepo.cs" />
     <Compile Include="Repositories\VatRepo.cs" />
   </ItemGroup>

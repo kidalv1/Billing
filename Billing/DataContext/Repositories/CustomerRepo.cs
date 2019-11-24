@@ -8,37 +8,27 @@ using System.Threading.Tasks;
 
 namespace DataContext.Repositories
 {
-  public class CustomerRepo
+  public class CustomerRepo : ICRUD<Customer>
   {
     private Data data = new Data();
-    public void AddCutomer(Customer customer)
+    public void Add(Customer customer)
     {
       data.Customers.Add(customer);
-      data.SaveChanges();
-    }
-    public void addUser(Customer user)
-    {
-      data.Customers.Add(user);
       data.SaveChanges();
     }
     public Customer FindById(int id)
     {
       Customer customer = null;
-      try
-      {
          customer = data.Customers.Find(id);
         if (!customer.Visibility)
         {
           throw new NotExistExeption();
         }
-      }
-      catch (Exception ex){
-        throw new NotExistExeption();
-         };
+      
       
       return customer;
     }
-    public void removeCustomer(Customer customer)
+    public void Remove(Customer customer)
     {
       customer.Visibility = false;
       data.SaveChanges();
@@ -52,7 +42,7 @@ namespace DataContext.Repositories
 
       return customers.ToList();
     }
-    public void EditCustomer(Customer customer)
+    public void Edit(Customer customer)
     {
       Customer oldCustomer = FindById(customer.Id);
       oldCustomer.Firstname = customer.Firstname;
@@ -62,5 +52,13 @@ namespace DataContext.Repositories
 
       data.SaveChanges();
     }
+
+
+
+    public List<Customer> GetAll()
+    {
+      return data.Customers.ToList();
+    }
+
   }
 }

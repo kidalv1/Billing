@@ -17,7 +17,7 @@
   <div class="form-group">
     @Html.LabelFor(model => model.Item, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-      @Html.EditorFor(model => model.Item, new { htmlAttributes = new { @class = "form-control" } })
+      @Html.EditorFor(model => model.Item, new { htmlAttributes = new { @class = "form-control", required = "required"  } })
       @Html.ValidationMessageFor(model => model.Item, "", new { @class = "text-danger" })
     </div>
   </div>
@@ -25,7 +25,7 @@
   <div class="form-group">
     @Html.LabelFor(model => model.PricePiece, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-      @Html.EditorFor(model => model.PricePiece, new { htmlAttributes = new { @class = "form-control" } })
+      @Html.EditorFor(model => model.PricePiece, new { htmlAttributes = new { @class = "form-control", required = "required" , onchange = "ValidationValue('PricePiece')" } })
       @Html.ValidationMessageFor(model => model.PricePiece, "", new { @class = "text-danger" })
     </div>
   </div>
@@ -33,7 +33,7 @@
   <div class="form-group">
     @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-      @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+      @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", required = "required" , onchange = "ValidationValue('Discount')" } })
       @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
     </div>
   </div>
@@ -41,7 +41,7 @@
   <div class="form-group">
     @Html.LabelFor(model => model.CountOfItems, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-      @Html.EditorFor(model => model.CountOfItems, new { htmlAttributes = new { @class = "form-control" } })
+      @Html.EditorFor(model => model.CountOfItems, new { htmlAttributes = new { @class = "form-control" , required = "required" , onchange = "ValidationValue('CountOfItems')" } })
       @Html.ValidationMessageFor(model => model.CountOfItems, "", new { @class = "text-danger" })
     </div>
   </div>
@@ -81,3 +81,13 @@
 <div>
   @Html.ActionLink("Back to List", "Index")
 </div>
+<script type="text/javascript">
+  function ValidationValue(id) {
+    var input = document.getElementById(id).value;
+    var inputReplace = input.replace(/,/, ".");
+    if (input < 0 || isNaN(inputReplace)) {
+      alert("Het moet een positieve getal zijn");
+      document.getElementById(id).value = 0;
+    }
+  }
+</script>

@@ -18,7 +18,7 @@ namespace Billing.BLL
     }
     public void AddCustomer(Customer customer)
     {
-      customerRepo.AddCutomer(customer);
+      customerRepo.Add(customer);
     }
 
     public List<Customer> GetVisibilityCustomers()
@@ -31,12 +31,12 @@ namespace Billing.BLL
     }
     public void RemoveCustomer(Customer customer)
     {
-      customerRepo.removeCustomer(customer);
+      customerRepo.Remove(customer);
     }
 
     public void EditCustomer(Customer customer)
     {
-      customerRepo.EditCustomer(customer);
+      customerRepo.Edit(customer);
     }
 
     }

@@ -31,6 +31,7 @@ namespace WebApplication1.Controllers
             return View(role);
         }
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public ActionResult Create(IdentityRole Role)
     {
       var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
