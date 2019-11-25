@@ -80,9 +80,16 @@ namespace DataContext.Repositories
     }
     public Invoice GetLastInvoice()
     {
-      
-      return data.Invoices.OrderByDescending(i => i.Id).First();
+      Invoice invoice = null;
+      try
+      {
+         invoice = data.Invoices.OrderByDescending(i => i.Id).First();
+      }
+      catch
+      {
 
+      }
+      return invoice;
 
     }
 

@@ -22,15 +22,22 @@ namespace Billing.BLL
     }
     public void AddInvoice(Invoice invoice , string userName, int idOfCustomer)
     {
-      Invoice lastInvoice = invoiceRepo.GetLastInvoice();
-      string[] lastInvoiceCode = lastInvoice.InvoiceCode.Split('-');
-      int count = int.Parse(lastInvoiceCode[1]);
-      count++;
-      if (DateTime.Today.Month != mouth)
+      int count = 0;
+      try
       {
-        mouth = DateTime.Today.Month;
+        Invoice lastInvoice = invoiceRepo.GetLastInvoice();
+        string[] lastInvoiceCode = lastInvoice.InvoiceCode.Split('-');
+        count = int.Parse(lastInvoiceCode[1]);
+        count++;
+        if (lastInvoice.Date.Month != DateTime.Now.Month)
+        {
+          count = 1;
+        }
       }
-
+      catch(Exception ex)
+      {
+        count = 1;
+      }
       invoice.User = userName;
       invoice.Date = DateTime.Now;
       string invoiceCode = DateTime.Today.Year.ToString() + DateTime.Today.Month.ToString() +  "-" + count.ToString("0000");
