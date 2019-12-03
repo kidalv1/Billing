@@ -1,7 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -18,8 +20,11 @@ namespace WebApplication1
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+          NetworkCredential netCred = new NetworkCredential("projectMV2019@hotmail.com", "ProjectAp2019");
+          SmtpClient smtpobj = new SmtpClient("smtp.live.com", 587);
+          smtpobj.EnableSsl = true;
+          smtpobj.Credentials = netCred;
+          return smtpobj.SendMailAsync("projectMV2019@hotmail.com", message.Destination, message.Subject , message.Body);
         }
     }
 

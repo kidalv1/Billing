@@ -1,80 +1,80 @@
 @model DTO.Models.Invoice
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Details of invoice";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>Invoice</h4>
-    <hr />
-    <dl class="dl-horizontal">
+  <h4>Invoice</h4>
+  <hr />
+  <dl class="dl-horizontal">
 
-      <dt>
-        @Html.DisplayNameFor(model => model.Date)
-      </dt>
+    <dt>
+      @Html.DisplayNameFor(model => model.Date)
+    </dt>
 
-      <dd>
-        @Model.Date.ToShortDateString()
-      </dd>
-      <dt>
-        @Html.DisplayNameFor(model => model.Finished)
-      </dt>
-      <dd>
-        @Html.DisplayFor(model => model.Finished)
-      </dd>
-      <dt>
-        @Html.DisplayNameFor(model => model.Customer)
-      </dt>
+    <dd>
+      @Model.Date.ToShortDateString()
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Finished)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Finished)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Customer)
+    </dt>
 
-      <dd>
-        @Html.DisplayFor(model => model.Customer.Firstname)
-        @Html.DisplayFor(model => model.Customer.Lastname)
-      </dd>
+    <dd>
+      @Html.DisplayFor(model => model.Customer.Firstname)
+      @Html.DisplayFor(model => model.Customer.Lastname)
+    </dd>
 
-      <dt>
-        @Html.DisplayNameFor(model => model.User)
-      </dt>
+    <dt>
+      @Html.DisplayNameFor(model => model.User)
+    </dt>
 
-      <dd>
-        @Html.DisplayFor(model => model.User)
-      </dd>
+    <dd>
+      @Html.DisplayFor(model => model.User)
+    </dd>
 
-      <dt>
-        @Html.DisplayNameFor(model => model.InvoiceCode)
-      </dt>
+    <dt>
+      @Html.DisplayNameFor(model => model.InvoiceCode)
+    </dt>
 
-      <dd>
-        @Html.DisplayFor(model => model.InvoiceCode)
-      </dd>
-      <table class="table">
-        <tr>
-          <th>
-            Item
-          </th>
-          <th>
-            PricePiece
-          </th>
-          <th>
-            Discount
-          </th>
-          <th>
-            CountOfItems
-          </th>
-          <th>
-            Percentage
-          </th>
-          <th>
-            Price without VAT
-          </th>
-          <th>
-            Price with VAT
-          </th>
-          <th></th>
-        </tr>
-        @for (int i = 0; i < Model.DetailLines.Count; i++)
-        {
+    <dd>
+      @Html.DisplayFor(model => model.InvoiceCode)
+    </dd>
+    <table class="table">
+      <tr>
+        <th>
+          Item
+        </th>
+        <th>
+          PricePiece
+        </th>
+        <th>
+          Discount
+        </th>
+        <th>
+          CountOfItems
+        </th>
+        <th>
+          Percentage
+        </th>
+        <th>
+          Price without VAT
+        </th>
+        <th>
+          Price with VAT
+        </th>
+        <th></th>
+      </tr>
+      @for (int i = 0; i < Model.DetailLines.Count; i++)
+      {
         <tr>
           <td>
             @Html.DisplayFor(modelItem => Model.DetailLines.ToList()[i].Item)
@@ -101,24 +101,26 @@
 
 
         </tr>
-        }
-        @foreach (var item in Model.DetailLines)
-        {
+      }
+      @foreach (var item in Model.DetailLines)
+      {
 
-        }
-      </table>
-      <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-      </p>
-      <h3>
-        <strong style="float:right">Total price without VAT: @ViewBag.priceWithoutVAT </strong>
-      </h3>
-      <br />
+      }
+    </table>
 
-      <h3>
-        <strong style="float:right">Total price with VAT: @ViewBag.priceWithVat </strong>
-      </h3>
 
-    </dl>
+
+  </dl>
+  <br />
+  <h4 class="h4">
+    <p > Total price without VAT: @ViewBag.priceWithoutVAT</p>
+  </h4>
+
+  <h4 class="h4" style="margin-bottom:40px;">
+    <p >Total price with VAT: @ViewBag.priceWithVat </p>
+  </h4>
+  <p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+  </p>
 </div>

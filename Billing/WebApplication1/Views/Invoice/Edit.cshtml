@@ -1,7 +1,7 @@
 @model DTO.Models.Invoice
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit invoice";
 }
 
 <h2>Edit</h2>
@@ -49,25 +49,29 @@
   </dd>
 
 
+  <dt>
+    @Html.LabelFor(model => model.Finished)
+  </dt>
 
-  <div class="form-group">
-    @Html.LabelFor(model => model.Finished, htmlAttributes: new { @class = "control-label col-md-1" } )
-    <div class="col-md-10 ">
-      <div class="checkbox">
-        @Html.EditorFor(model => model.Finished)
-        @Html.ValidationMessageFor(model => model.Finished, "", new { @class = "text-danger" })
-      </div>
+  <dd>
+    <div class="checkbox">
+      @Html.EditorFor(model => model.Finished)
+      @Html.ValidationMessageFor(model => model.Finished, "", new { @class = "text-danger" })
     </div>
-  </div>
+  </dd>
+  
+    
+
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
-      <input type="submit" value="Save" class="btn btn-default" />
+      <input type="submit" value="Save" class="btn btn-secondary btn-sm" />
     </div>
   </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+  @Html.ActionLink("Back to List", "Index")
 </div>
+

@@ -1,7 +1,7 @@
-﻿@model DTO.Models.DetailLine
+@model DTO.Models.DetailLine
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete detail line";
 }
 
 <h2>Delete</h2>
@@ -65,7 +65,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-secondary btn-sm" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

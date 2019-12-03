@@ -6,8 +6,10 @@
 
 @using (Html.BeginForm())
 {
-  <p>Enter user role name</p>
+<div class="form-horizontal">
 
-  @Html.EditorFor(m => m.Name)
-  <input type="submit" value="Create Role" />
+  @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+  <br />
+  <input type="submit" value="Create Role" class="btn btn-secondary btn-sm" />
+</div>
 }

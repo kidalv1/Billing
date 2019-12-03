@@ -34,7 +34,7 @@ namespace Billing.BLL
           count = 1;
         }
       }
-      catch(Exception ex)
+      catch
       {
         count = 1;
       }

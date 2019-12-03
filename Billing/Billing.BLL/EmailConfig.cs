@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Billing.BLL
 {
-  class EmailConfig
+  public class EmailConfig
   {
     public EmailConfig()
     {
@@ -16,8 +16,8 @@ namespace Billing.BLL
     }
     public void SendEmail(string to , string subject , string body)
     {
-      MailMessage o = new MailMessage("email from", to, subject, body);
-      NetworkCredential netCred = new NetworkCredential("email from", "password");
+      MailMessage o = new MailMessage("your email", to, subject, body);
+      NetworkCredential netCred = new NetworkCredential("email email", "password");
       SmtpClient smtpobj = new SmtpClient("smtp.live.com", 587);
       smtpobj.EnableSsl = true;
       smtpobj.Credentials = netCred;

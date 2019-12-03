@@ -1,7 +1,7 @@
 @model DTO.Models.Customer
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete customer";
 }
 
 <h2>Delete</h2>
@@ -49,7 +49,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-secondary btn-lg" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

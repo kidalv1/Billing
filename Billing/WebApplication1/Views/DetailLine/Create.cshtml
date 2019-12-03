@@ -1,7 +1,7 @@
 @model DTO.Models.DetailLine
 
 @{
-  ViewBag.Title = "Create";
+  ViewBag.Title = "Create detail line";
 }
 
 <h2>Create</h2>
@@ -46,30 +46,39 @@
     </div>
   </div>
 
-  <form>
-    <strong>
+  <div class="form-group">
+    <p class="control-label col-md-2">
       Vat percentage
-    </strong>
-  <select name="Vat" id="Vat">
-    @foreach (var item in ViewBag.Vats)
+    </p>
+    <div class="col-md-10">
+      <select name="Vat" id="Vat" class="form-control form-control-sm" style="background-color:white;">
+        @foreach (var item in ViewBag.Vats)
+        {
+          <option value=@item.Id>@item.Percentage</option>
+        }
+      </select>
+      
+    </div>
+    @if (ViewBag.invoiceId == 0)
     {
-      <option value=@item.Id>@item.Percentage</option>
-    }
-  </select>
-    <br /> <br />
-           <strong> Invoice id</strong>
-  <select name="Invoice" id="Invoice">
-    @foreach (var item in ViewBag.Invoices)
-    {
-      <option value=@item.Id>@item.Id</option>
-    }
-  </select>
 
-</form>
+           <p class="control-label col-md-2" style="margin-top:20px;"> Invoice id</p>
+      <div class="col-md-10">
+        <select name="Invoice" id="Invoice" class="form-control form-control-sm" style="background-color:white;">
+          @foreach (var item in ViewBag.Invoices)
+          {
+            <option value=@item.Id>@item.Id</option>
+          }
+        </select>
+      </div>
+
+    }
+
+</div>
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
-      <input type="submit" value="Create" class="btn btn-default" />
+      <input type="submit" value="Create" class="btn btn-secondary btn-sm" />
     </div>
   </div>
 </div>
@@ -86,7 +95,7 @@
     var input = document.getElementById(id).value;
     var inputReplace = input.replace(/,/, ".");
     if (input < 0 || isNaN(inputReplace)) {
-      alert("Het moet een positieve getal zijn");
+      alert("it must be a positive number");
       document.getElementById(id).value = 0;
     }
   }

@@ -27,15 +27,17 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
           
-      return View(detailLineBLL.GetAll());
+          return View(detailLineBLL.GetAll());
         }
-        public ActionResult Create()
-    {
-      ViewBag.Invoices = invoiceBLL.GetNotFinishedInvoices();
-      ViewBag.Vats = vatBLL.GetVats();
+        public ActionResult Create(Invoice invoice)
+        {
+          ViewBag.Invoices = invoiceBLL.GetNotFinishedInvoices();
+          ViewBag.Vats = vatBLL.GetVats();
+          ViewBag.invoiceId = invoice.Id;
 
-      return View();
-    }
+          return View();
+        }
+
 
     [HttpPost]
     [ActionName("Create")]

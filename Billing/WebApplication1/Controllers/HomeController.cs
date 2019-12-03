@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
     {
       if (User.Identity.IsAuthenticated)
       {
-        return View();
+        return RedirectToAction("Index", "Invoice");
       }
       else
       {

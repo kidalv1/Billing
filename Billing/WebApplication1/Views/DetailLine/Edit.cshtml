@@ -1,7 +1,7 @@
 @model DTO.Models.DetailLine
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit detail line";
 }
 
 <h2>Edit</h2>
@@ -51,7 +51,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-secondary btn-sm" />
             </div>
         </div>
     </div>
@@ -66,7 +66,7 @@
     var input = document.getElementById(id).value;
     var inputReplace = input.replace(/,/, ".");
     if (input < 0 || isNaN(inputReplace)) {
-      alert("Het moet een positieve getal zijn");
+      alert("it must be a positive number");
       document.getElementById(id).value = 0;
     }
   }

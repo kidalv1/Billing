@@ -61,7 +61,7 @@ namespace WebApplication1.Controllers
     public ActionResult DeleteInvoice(int id)
     {
       
-      if (invoiceBLL.FindById(id).DetailLines.Count >0)
+      if (invoiceBLL.FindById(id).DetailLines.Count > 0)
       {
         string reason = Request.Form["reason"];
         invoiceBLL.RemoveInvoice(id, reason);
