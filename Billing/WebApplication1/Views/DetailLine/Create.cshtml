@@ -57,24 +57,32 @@
           <option value=@item.Id>@item.Percentage</option>
         }
       </select>
-      
+
     </div>
+    <p class="control-label col-md-2" style="margin-top:20px;"> Invoice id</p>
     @if (ViewBag.invoiceId == 0)
     {
 
-           <p class="control-label col-md-2" style="margin-top:20px;"> Invoice id</p>
+
       <div class="col-md-10">
         <select name="Invoice" id="Invoice" class="form-control form-control-sm" style="background-color:white;">
           @foreach (var item in ViewBag.Invoices)
           {
-            <option value=@item.Id>@item.Id</option>
+            <option value=@item.Id>@item.InvoiceCode</option>
           }
         </select>
       </div>
 
     }
 
-</div>
+    @if(ViewBag.invoiceId != 0)
+    {
+    <div class="col-md-10">
+      <input value=@ViewBag.invoiceCode name ="Invoice" id="Invoice"  readonly=""/>
+    </div>
+    }
+
+  </div>
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
@@ -82,9 +90,7 @@
     </div>
   </div>
 </div>
-  <h3>
-    <strong> @ViewBag.ex </strong>
-  </h3>
+
 }
 
 <div>

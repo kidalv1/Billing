@@ -31,11 +31,13 @@ namespace WebApplication1.Controllers
         }
         public ActionResult Create(Invoice invoice)
         {
+          Invoice i = invoiceBLL.FindById(invoice.Id);
           ViewBag.Invoices = invoiceBLL.GetNotFinishedInvoices();
           ViewBag.Vats = vatBLL.GetVats();
-          ViewBag.invoiceId = invoice.Id;
+          ViewBag.invoiceId = i.Id;
+          ViewBag.invoiceCode = i.InvoiceCode;
 
-          return View();
+      return View();
         }
 
 
