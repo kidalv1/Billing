@@ -46,9 +46,25 @@ namespace Billing.BLL
       invoice.CustomerId = customer.Id;
       invoiceRepo.Add(invoice);
     }
+
+    public Invoice findByInvoiceCode(string invoiceCode)
+    {
+      return invoiceRepo.findByInvoiceCode(invoiceCode);
+    }
     public List<Invoice> GetVisibilityInvoice()
     {
       return invoiceRepo.GetVisibilityInvoice();
+    }
+
+    public List<Invoice> FindByNameOrEmail(string par)
+    {
+      List<Invoice> invoices = invoiceRepo.FindByNameOrEmail(par);
+      foreach (Invoice item in invoices)
+      {
+        item.Customer = CustomerRepo.FindById(item.CustomerId);
+      }
+
+      return invoices;
     }
     public Invoice FindById(int id)
     {

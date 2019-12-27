@@ -20,9 +20,10 @@ namespace Billing.BLL
       detailLineRepo = new DetailLineRepo();
     }
 
-    public void CreateDetailLine(DetailLine detailLine , int idOfVat , int idOfInvoice)
+    public void CreateDetailLine(DetailLine detailLine , int idOfVat , string invoiceCode)
     {
-      detailLine.InvoiceId = idOfInvoice;
+      Invoice invoice = invoiceRepo.findByInvoiceCode(invoiceCode);
+      detailLine.InvoiceId = invoice.Id;
       detailLine.VatId = idOfVat;
       this.detailLineRepo.Add(detailLine);
     }
@@ -57,12 +58,15 @@ namespace Billing.BLL
     {
       DetailLine detailLine = detailLineRepo.FindById(id);
       detailLine.Vat = vatRepo.FindById(detailLine.VatId);
+
+
       return detailLine;
     }
 
     public void RemoveDetailLine(DetailLine detailLine)
     {
-      detailLineRepo.Remove(detailLine);
+
+      detailLineRepo.Remove(FindById(detailLine.Id));
     }
 
     public void EdtiDetailLine(DetailLine detailLine)

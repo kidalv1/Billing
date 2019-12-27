@@ -195,6 +195,8 @@ C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\DataContext.
 C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\DataContext.dll.config
 C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\DTO.pdb
 C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\DTO.dll.config
+C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\EntityFramework.xml
+C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\EntityFramework.SqlServer.xml
 C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\System.Web.Helpers.xml
 C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\System.Web.Mvc.xml
 C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\System.Web.Optimization.xml
@@ -204,8 +206,6 @@ C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\System.Web.W
 C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\System.Web.WebPages.Razor.xml
 C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\Newtonsoft.Json.xml
 C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\Antlr3.Runtime.pdb
-C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\EntityFramework.xml
-C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\EntityFramework.SqlServer.xml
 C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\Vladik\Desktop\Project\Billing\Billing\WebApplication1\bin\Microsoft.AspNet.Identity.EntityFramework.xml

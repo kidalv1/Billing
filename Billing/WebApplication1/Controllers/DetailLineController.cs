@@ -31,13 +31,20 @@ namespace WebApplication1.Controllers
         }
         public ActionResult Create(Invoice invoice)
         {
-          Invoice i = invoiceBLL.FindById(invoice.Id);
-          ViewBag.Invoices = invoiceBLL.GetNotFinishedInvoices();
-          ViewBag.Vats = vatBLL.GetVats();
-          ViewBag.invoiceId = i.Id;
-          ViewBag.invoiceCode = i.InvoiceCode;
-
-      return View();
+          try
+          {
+            Invoice i = invoiceBLL.FindById(invoice.Id);
+            ViewBag.invoiceId = i.Id;
+            ViewBag.invoiceCode = i.InvoiceCode;
+            ViewBag.Invoices = invoiceBLL.GetNotFinishedInvoices();
+            ViewBag.Vats = vatBLL.GetVats();
+          }
+          catch
+          {
+            RedirectToAction("Index", "Invoice");
+          }
+          
+          return View();
         }
 
 
@@ -45,12 +52,13 @@ namespace WebApplication1.Controllers
     [ActionName("Create")]
     public ActionResult CreateDetailLine(DetailLine detailLine )
     {
-      int idOfInvoice = int.Parse(Request.Form["Invoice"]);
+      int idOfInvoice = detailLine.Id;
+      string invoiceCode = Request.Form["Invoice"];
       int idOfVat = int.Parse(Request.Form["Vat"]);
-        detailLineBLL.CreateDetailLine(detailLine, idOfVat , idOfInvoice);
+      detailLineBLL.CreateDetailLine(detailLine, idOfVat ,invoiceCode );
       
       
-      return RedirectToAction("Index");
+      return RedirectToAction("Details" , "Invoice", new{@id = idOfInvoice});
     }
 
     public ActionResult Details(int id)
@@ -71,7 +79,8 @@ namespace WebApplication1.Controllers
     public ActionResult Edit(DetailLine detailLine)
     {
       detailLineBLL.EdtiDetailLine(detailLine);
-      return RedirectToAction("index");
+      return RedirectToAction("Details", "Invoice", new { @id = detailLineBLL.FindById(detailLine.Id).InvoiceId });
+
     }
     public ActionResult Delete(int id)
     {
@@ -81,8 +90,10 @@ namespace WebApplication1.Controllers
     [ValidateAntiForgeryToken]
     public ActionResult Delete(DetailLine detailLine)
     {
+      int invoiceId = detailLineBLL.FindById(detailLine.Id).InvoiceId;
       detailLineBLL.RemoveDetailLine(detailLine);
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", "Invoice", new { @id = invoiceId });
+
     }
   }
 }

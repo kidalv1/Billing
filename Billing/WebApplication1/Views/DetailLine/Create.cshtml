@@ -1,101 +1,90 @@
 @model DTO.Models.DetailLine
 
 @{
-  ViewBag.Title = "Create detail line";
+    ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
-  @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>DetailLine</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Item, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Item, new { htmlAttributes = new { @class = "form-control" , required  ="required" } })
+                @Html.ValidationMessageFor(model => model.Item, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-<div class="form-horizontal">
-  <h4>DetailLine</h4>
-  <hr />
-  @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-  <div class="form-group">
-    @Html.LabelFor(model => model.Item, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-      @Html.EditorFor(model => model.Item, new { htmlAttributes = new { @class = "form-control", required = "required"  } })
-      @Html.ValidationMessageFor(model => model.Item, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.PricePiece, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PricePiece, new { htmlAttributes = new { @class = "form-control", required = "required" , onchange = "ValidationValue('PricePiece')" }  })
+                @Html.ValidationMessageFor(model => model.PricePiece, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", required = "required" , onchange = "ValidationValue('Discount')" } })
+                @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CountOfItems, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CountOfItems, new { htmlAttributes = new { @class = "form-control", required = "required", onchange = "ValidationValue('CountOfItems')" } })
+                @Html.ValidationMessageFor(model => model.CountOfItems, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <p class="control-label col-md-2">
+            Vat percentage
+          </p>
+          <div class="col-md-10">
+            <select name="Vat" id="Vat" class="form-control form-control-sm" style="background-color:white;">
+              @foreach (var item in ViewBag.Vats)
+              {
+                <option value=@item.Id>@item.Percentage</option>
+              }
+            </select>
+
+          </div>
+          <p class="control-label col-md-2" style="margin-top:20px;"> Invoice id</p>
+    
+
+          <div class="col-md-10">
+            <form name="Invoice" id="Invoice" class="form-control form-control-sm" style="background-color:white;">
+              <input value=@ViewBag.invoiceCode name="Invoice" id="Invoice" readonly="" />
+            </form>
+          </div>
+    
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-secondary btn-sm"  />
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="form-group">
-    @Html.LabelFor(model => model.PricePiece, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-      @Html.EditorFor(model => model.PricePiece, new { htmlAttributes = new { @class = "form-control", required = "required" , onchange = "ValidationValue('PricePiece')" } })
-      @Html.ValidationMessageFor(model => model.PricePiece, "", new { @class = "text-danger" })
-    </div>
-  </div>
-
-  <div class="form-group">
-    @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-      @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", required = "required" , onchange = "ValidationValue('Discount')" } })
-      @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
-    </div>
-  </div>
-
-  <div class="form-group">
-    @Html.LabelFor(model => model.CountOfItems, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-      @Html.EditorFor(model => model.CountOfItems, new { htmlAttributes = new { @class = "form-control" , required = "required" , onchange = "ValidationValue('CountOfItems')" } })
-      @Html.ValidationMessageFor(model => model.CountOfItems, "", new { @class = "text-danger" })
-    </div>
-  </div>
-
-  <div class="form-group">
-    <p class="control-label col-md-2">
-      Vat percentage
-    </p>
-    <div class="col-md-10">
-      <select name="Vat" id="Vat" class="form-control form-control-sm" style="background-color:white;">
-        @foreach (var item in ViewBag.Vats)
-        {
-          <option value=@item.Id>@item.Percentage</option>
-        }
-      </select>
-
-    </div>
-    <p class="control-label col-md-2" style="margin-top:20px;"> Invoice id</p>
-    @if (ViewBag.invoiceId == 0)
-    {
-
-
-      <div class="col-md-10">
-        <select name="Invoice" id="Invoice" class="form-control form-control-sm" style="background-color:white;">
-          @foreach (var item in ViewBag.Invoices)
-          {
-            <option value=@item.Id>@item.InvoiceCode</option>
-          }
-        </select>
-      </div>
-
-    }
-
-    @if(ViewBag.invoiceId != 0)
-    {
-    <div class="col-md-10">
-      <input value=@ViewBag.invoiceCode name ="Invoice" id="Invoice"  readonly=""/>
-    </div>
-    }
-
-  </div>
-
-  <div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-      <input type="submit" value="Create" class="btn btn-secondary btn-sm" />
-    </div>
-  </div>
-</div>
-
 }
 
 <div>
   @Html.ActionLink("Back to List", "Index")
 </div>
+
 <script type="text/javascript">
   function ValidationValue(id) {
     var input = document.getElementById(id).value;

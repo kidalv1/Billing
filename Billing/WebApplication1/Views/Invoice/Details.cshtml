@@ -4,10 +4,10 @@
     ViewBag.Title = "Details of invoice";
 }
 
-<h2>Details</h2>
+<h2 class ="detail">Details</h2>
 
 <div>
-  <h4>Invoice</h4>
+  <h4>Invoice code: @Model.InvoiceCode</h4>
   <hr />
   <dl class="dl-horizontal">
 
@@ -18,10 +18,10 @@
     <dd>
       @Model.Date.ToShortDateString()
     </dd>
-    <dt>
+    <dt class ="print">
       @Html.DisplayNameFor(model => model.Finished)
     </dt>
-    <dd>
+    <dd class ="print">
       @Html.DisplayFor(model => model.Finished)
     </dd>
     <dt>
@@ -98,14 +98,16 @@
           <td>
             @ViewBag.prices[i]
           </td>
+          <td class ="print">
+            @Html.ActionLink("Edit", "Edit", "DetailLine", new { id = Model.DetailLines.ToList()[i].Id } , null) |
+            @Html.ActionLink("Details", "Details", "DetailLine", new { id = Model.DetailLines.ToList()[i].Id } , null) |
+            @Html.ActionLink("Delete", "Delete", "DetailLine", new { id = Model.DetailLines.ToList()[i].Id } , null)
 
+          </td>
 
         </tr>
       }
-      @foreach (var item in Model.DetailLines)
-      {
-
-      }
+      
     </table>
 
 
@@ -113,14 +115,20 @@
   </dl>
   <br />
   <h4 class="h4">
-    <p > Total price without VAT: @ViewBag.priceWithoutVAT</p>
+    <p> Total price without VAT: @ViewBag.priceWithoutVAT</p>
   </h4>
 
   <h4 class="h4" style="margin-bottom:40px;">
-    <p >Total price with VAT: @ViewBag.priceWithVat </p>
+    <p>Total price with VAT: @ViewBag.priceWithVat </p>
   </h4>
-  <p>
+  <button class ="print" onclick="printDocument()">Print invoice</button>
+  <p class ="link">
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
   </p>
 </div>
+<script>
+  function printDocument() {
+    window.print();
+  }
+</script>

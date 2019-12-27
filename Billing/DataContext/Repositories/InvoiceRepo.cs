@@ -2,6 +2,8 @@ using DataContext.Exeptions;
 using DTO.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,15 +16,25 @@ namespace DataContext.Repositories
     private Data data = new Data();
     public void Add(Invoice invoice)
     {
-      
-
       data.Invoices.Add(invoice);
       data.SaveChanges();
+    }
+
+    public List<Invoice> FindByNameOrEmail(string par)
+    {
+      SqlParameter param = new SqlParameter("@p", SqlDbType.VarChar);
+      param.Value = "%" + par +"%";
+      return  data.Invoices.SqlQuery("select * from Invoice as i " +
+                                                      "where exists" +
+                                                      "(select CustomerId from Customer as s" +
+                                                      " where (Firstname like @p or Lastname like @p or Email like @p) " +
+                                                      "and s.ID = i.CustomerId)",param).ToList();
     }
     public List<Invoice> GetVisibilityInvoice()
     {
       IEnumerable<Invoice> invoices =
              from i in data.Invoices.ToList()
+             orderby i.Date descending , i.InvoiceCode descending 
              where i.Active
              select i;
 
@@ -40,8 +52,17 @@ namespace DataContext.Repositories
              select i;
 
       return invoices.ToList();
-    } 
+    }
 
+    public Invoice findByInvoiceCode(string invoiceCode)
+    {
+      IEnumerable<Invoice> invoices =
+        from i in data.Invoices.ToList()
+        where i.InvoiceCode == invoiceCode
+        select i;
+
+      return invoices.First();
+    }
     public Invoice FindById(int id)
     {
       Invoice invoice = data.Invoices.Find(id);

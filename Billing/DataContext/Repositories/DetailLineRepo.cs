@@ -2,6 +2,7 @@ using DataContext.Exeptions;
 using DTO.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +14,11 @@ namespace DataContext.Repositories
     private Data data = new Data();
     public void Add(DetailLine detailLine)
     {
-
-        this.data.DetailLines.Add(detailLine);
-        data.SaveChanges();
-      
-
-      
-      
+      this.data.DetailLines.Add(detailLine);
+      detailLine.Vat = data.Vats.Find(detailLine.VatId);
+      data.Vats.Attach(detailLine.Vat);
+      data.Entry(detailLine.Vat).State = EntityState.Unchanged;
+      data.SaveChanges();
     }
 
     public List<DetailLine> GetAll()
@@ -38,7 +37,10 @@ namespace DataContext.Repositories
 
     public void Remove(DetailLine detailLine)
     {
-      data.DetailLines.Remove(detailLine);
+      detailLine.Vat = data.Vats.Find(detailLine.VatId);
+      data.Vats.Attach(detailLine.Vat);
+      data.Entry(detailLine.Vat).State = EntityState.Unchanged;
+      data.Entry(detailLine).State = EntityState.Deleted;
       data.SaveChanges();
     }
     public void Edit(DetailLine detailLine)

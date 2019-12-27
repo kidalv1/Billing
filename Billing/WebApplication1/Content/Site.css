@@ -16,7 +16,7 @@ body {
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
-    white-space: normal;
+  white-space: normal;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -28,7 +28,9 @@ textarea {
 
 .navbar-inverse {
   background-color: #4f4f4f;
+
 }
+
 a{
   color : black;
 }
@@ -45,6 +47,27 @@ h2{
 .form-control{
   background-color:#605252;
   color : black;
+}
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  body {
+    margin: 1.6cm;
+  }
+  .nav {
+    display: none;
+  }
+  .detail {
+    display: none;
+  }
+  .print {
+    display: none;
+  }
+  .link {
+    display: none;
+  }
 }
 
 

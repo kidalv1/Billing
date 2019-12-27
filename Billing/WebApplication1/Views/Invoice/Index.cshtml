@@ -1,13 +1,17 @@
 @model IEnumerable<DTO.Models.Invoice>
 
 @{
-    ViewBag.Title = "List of invoices";
+  ViewBag.Title = "List of invoices";
 }
 
 <h2>List of invoices</h2>
-
+@using (Html.BeginForm())
+ {
+   <p>Search <input type="text" id="search" name="search"/></p>
+   <input type="submit" name="search" value="search" class="btn btn-success" />
+ }
 <p>
-    @Html.ActionLink("Create New", "Create", new { area = "" }, new { @class = "btn btn-dark" })
+  @Html.ActionLink("Create New", "Create", new { area = "" }, new { @class = "btn btn-dark" })
 </p>
 <table class="table table-striped table-dark">
   <thead>
@@ -35,44 +39,45 @@
       </th>
     </tr>
   </thead>
-@foreach (var item in Model) {
-  <tr>
-    <td>
-      @Html.DisplayFor(modelItem => item.Id)
-    </td>
-    <td>
-      @item.Date.ToShortDateString()
-    </td>
-    <td>
-      @Html.DisplayFor(modelItem => item.Active)
-    </td>
-    <td>
-      @Html.DisplayFor(modelItem => item.Finished)
-    </td>
-    <td>
-      @Html.DisplayFor(modelItem => item.Customer.Firstname)
-      @Html.DisplayFor(modelItem => item.Customer.Lastname)
-    </td>
-    <td>
-      @Html.DisplayFor(modelItem => item.User)
-    </td>
-    <td>
-      @Html.DisplayFor(modelItem => item.InvoiceCode)
-    </td>
-    <td>
-      @if (!item.Finished)
-      {
-        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-}
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.Id)
+      </td>
+      <td>
+        @item.Date.ToShortDateString()
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Active)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Finished)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Customer.Firstname)
+        @Html.DisplayFor(modelItem => item.Customer.Lastname)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.User)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.InvoiceCode)
+      </td>
+      <td>
+        @if (!item.Finished)
+        {
+          @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+        }
 
-      @Html.ActionLink("Details", "Details", new { id = item.Id }) 
-      @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-      <div>
-        @Html.ActionLink("Add Detail line", "Create" , "DetailLine" , new{id = item.Id} , null )
-      </div>
-    </td>
-  </tr>
-}
+        @Html.ActionLink("Details", "Details", new { id = item.Id })
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        <div>
+          @Html.ActionLink("Add Detail line", "Create", "DetailLine", new { id = item.Id }, null)
+        </div>
+      </td>
+    </tr>
+  }
 
 </table>
 

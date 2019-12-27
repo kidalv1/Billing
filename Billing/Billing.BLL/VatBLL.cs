@@ -16,6 +16,10 @@ namespace Billing.BLL
       vatRepo = new VatRepo();
     }
 
+    public void Create(Vat vat)
+    {
+      vatRepo.Add(vat);
+    }
     public List<Vat> GetVats()
     {
       return vatRepo.GetAll();

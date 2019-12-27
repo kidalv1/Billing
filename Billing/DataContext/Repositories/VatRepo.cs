@@ -13,7 +13,8 @@ namespace DataContext.Repositories
 
     public void Add(Vat t)
     {
-      throw new NotImplementedException();
+      data.Vats.Add(t);
+      data.SaveChanges();
     }
 
     public void Edit(Vat t)

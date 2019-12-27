@@ -20,15 +20,32 @@ namespace WebApplication1.Controllers
       customerBLL = new CustomerBLL();
       invoiceBLL = new InvoiceBLL();
     }
-    public ActionResult Index()
+    public ActionResult Index(string search)
     {
-      return View(invoiceBLL.GetVisibilityInvoice());
-    } 
+
+      if (!String.IsNullOrEmpty(search))
+      {
+        return View(invoiceBLL.FindByNameOrEmail(search));
+      }
+      
+        return View(invoiceBLL.GetVisibilityInvoice());
+      
+
+      
+    }
     public ActionResult Create()
     {
       ViewBag.cutomers = customerBLL.GetVisibilityCustomers();
       return View();
     }
+
+    //[HttpPost]
+    //[ValidateAntiForgeryToken]
+    //[ActionName("Index")]
+    //public ActionResult IndexSearch(string save)
+    //{
+    //  return View();
+    //}
     [HttpPost]
     [ValidateAntiForgeryToken]
     [ActionName("Create")]
@@ -92,6 +109,7 @@ namespace WebApplication1.Controllers
       return RedirectToAction("Index");
     }
 
-
+    
   }
+  
 }
