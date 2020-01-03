@@ -18,10 +18,10 @@
     <dd>
       @Model.Date.ToShortDateString()
     </dd>
-    <dt class ="print">
+    <dt class="print">
       @Html.DisplayNameFor(model => model.Finished)
     </dt>
-    <dd class ="print">
+    <dd class="print">
       @Html.DisplayFor(model => model.Finished)
     </dd>
     <dt>
@@ -98,16 +98,16 @@
           <td>
             @ViewBag.prices[i]
           </td>
-          <td class ="print">
-            @Html.ActionLink("Edit", "Edit", "DetailLine", new { id = Model.DetailLines.ToList()[i].Id } , null) |
-            @Html.ActionLink("Details", "Details", "DetailLine", new { id = Model.DetailLines.ToList()[i].Id } , null) |
-            @Html.ActionLink("Delete", "Delete", "DetailLine", new { id = Model.DetailLines.ToList()[i].Id } , null)
+          <td class="print">
+            @Html.ActionLink("Edit", "Edit", "DetailLine", new { id = Model.DetailLines.ToList()[i].Id }, null) |
+            @Html.ActionLink("Details", "Details", "DetailLine", new { id = Model.DetailLines.ToList()[i].Id }, null) |
+            @Html.ActionLink("Delete", "Delete", "DetailLine", new { id = Model.DetailLines.ToList()[i].Id }, null)
 
           </td>
 
         </tr>
       }
-      
+
     </table>
 
 
@@ -121,8 +121,8 @@
   <h4 class="h4" style="margin-bottom:40px;">
     <p>Total price with VAT: @ViewBag.priceWithVat </p>
   </h4>
-  <button class ="print" onclick="printDocument()">Print invoice</button>
-  <p class ="link">
+  <button class="btn btn-primary hidden-print link" onclick=" printDocument()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+  <p class="link">
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
   </p>

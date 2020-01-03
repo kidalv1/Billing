@@ -28,7 +28,7 @@ namespace DataContext.Repositories
                                                       "where exists" +
                                                       "(select CustomerId from Customer as s" +
                                                       " where (Firstname like @p or Lastname like @p or Email like @p) " +
-                                                      "and s.ID = i.CustomerId)",param).ToList();
+                                                      "and s.ID = i.CustomerId and Active = 1)",param).ToList();
     }
     public List<Invoice> GetVisibilityInvoice()
     {

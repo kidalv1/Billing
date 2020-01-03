@@ -58,7 +58,8 @@ namespace WebApplication1.Controllers
 
     public ActionResult Delete(int id)
     {
-
+      ViewBag.priceWithoutVAT = invoiceBLL.GetTotalPrice(id);
+      ViewBag.priceWithVat = invoiceBLL.GetTotalPriceWithVAT(id);
       return View(invoiceBLL.FindById(id));
     }
     public ActionResult Details(int id)

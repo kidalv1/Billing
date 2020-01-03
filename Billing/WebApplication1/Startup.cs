@@ -37,7 +37,7 @@ namespace WebApplication1
         //Here we create a Admin super user who will maintain the website                   
 
         var user = new ApplicationUser();
-        user.UserName = "admin";
+        user.UserName = "admin@admin.com";
         user.Email = "admin@admin.com";
         user.FirstName = "Admin";
         user.LastName = "Admin";
@@ -45,7 +45,7 @@ namespace WebApplication1
 
         string userPWD = "Admin1$";
 
-        var chkUser = userManager.Create(user, userPWD);
+        var chkUser = userManager.Create(user, "Admin1$");
 
         //Add default User to Role Admin    
         if (chkUser.Succeeded)

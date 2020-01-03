@@ -79,34 +79,42 @@
       </th>
 
       <th>
-        Price
+        Price with vat
+      </th>
+      <th>
+        Price without vat
       </th>
       <th></th>
     </tr>
 
     @foreach (var item in Model.DetailLines)
     {
-      <tr>
-        <td>
-          @Html.DisplayFor(modelItem => item.Item)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.PricePiece)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.Discount)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.CountOfItems)
-        </td>
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.Item)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.PricePiece)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Discount)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.CountOfItems)
+      </td>
 
 
-        <td>
-          @item.GetVatPercantage()%
-        </td>
+      <td>
+        @item.GetVatPercantage()%
+      </td>
 
-
-      </tr>
+      <td>
+        @ViewBag.priceWithVat
+      </td>
+      <td>
+        @ViewBag.priceWithoutVAT
+      </td>
+    </tr>
     }
   </table>
 

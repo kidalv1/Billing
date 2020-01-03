@@ -80,10 +80,12 @@ namespace WebApplication1.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+      // This doesn't count login failures towards account lockout
+      // To enable password failures to trigger account lockout, change to shouldLockout: true
+      //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+      ApplicationUser user = UserManager.FindByEmail(model.Email);
+      var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
+      switch (result)
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
@@ -143,7 +145,7 @@ namespace WebApplication1.Controllers
 
     //
     // GET: /Account/Register
-
+        [Authorize(Roles ="Admin")]
         public ActionResult Register()
         {
             ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
@@ -152,8 +154,8 @@ namespace WebApplication1.Controllers
 
     //
     // POST: /Account/Register
-
-    [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
