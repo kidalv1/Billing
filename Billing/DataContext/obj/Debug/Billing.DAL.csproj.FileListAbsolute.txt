@@ -28,9 +28,7 @@ C:\Users\Vladik\Desktop\Project\Billing\Billing\DataContext\bin\Debug\DTO.dll.co
 C:\Users\Vladik\Desktop\Project\Billing\Billing\DataContext\bin\Debug\EntityFramework.xml
 C:\Users\Vladik\Desktop\Project\Billing\Billing\DataContext\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Vladik\Desktop\Project\Billing\Billing\DataContext\obj\Debug\Billing.DAL.csprojAssemblyReference.cache
-C:\Users\Vladik\Desktop\Project\Billing\Billing\DataContext\obj\Debug\DataContext.Migrations.Initial.resources
-C:\Users\Vladik\Desktop\Project\Billing\Billing\DataContext\obj\Debug\DataContext.Migrations.removeuser.resources
-C:\Users\Vladik\Desktop\Project\Billing\Billing\DataContext\obj\Debug\DataContext.Migrations.AddFinished.resources
+C:\Users\Vladik\Desktop\Project\Billing\Billing\DataContext\obj\Debug\DataContext.Migrations.Init.resources
 C:\Users\Vladik\Desktop\Project\Billing\Billing\DataContext\obj\Debug\Billing.DAL.csproj.GenerateResource.cache
 C:\Users\Vladik\Desktop\Project\Billing\Billing\DataContext\obj\Debug\Billing.DAL.csproj.CoreCompileInputs.cache
 C:\Users\Vladik\Desktop\Project\Billing\Billing\DataContext\obj\Debug\Billing.DAL.csproj.CopyComplete

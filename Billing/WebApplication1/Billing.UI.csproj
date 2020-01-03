@@ -178,6 +178,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VatController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -298,6 +299,9 @@
     <Content Include="Views\User\Detail.cshtml" />
     <Content Include="Views\DetailLine\Create.cshtml" />
     <Content Include="Views\DetailLine\Delete.cshtml" />
+    <Content Include="Views\Vat\Create.cshtml" />
+    <Content Include="Views\Role\Delete.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

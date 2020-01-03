@@ -13,7 +13,7 @@ using Billing.BLL;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize]
+
     public class AccountController : Controller
     {
         public EmailConfig _emailConfig;
@@ -143,7 +143,6 @@ namespace WebApplication1.Controllers
 
     //
     // GET: /Account/Register
-    [Authorize(Roles = "Admin")]
 
         public ActionResult Register()
         {
@@ -153,7 +152,7 @@ namespace WebApplication1.Controllers
 
     //
     // POST: /Account/Register
-    [Authorize(Roles = "Admin")]
+
     [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)

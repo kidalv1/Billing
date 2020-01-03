@@ -12,10 +12,19 @@
     </thead>
     @foreach (var role in Model)
     {
-    <tr>
-      <td>@role.Name</td>
-    </tr>
-     }
+      <tr>
+        <td>@role.Name</td>
+      </tr>
+      <td>
+
+        @if (role.Name.ToLower() != "admin")
+        {
+          @Html.ActionLink("Delete | ", "Delete", new { id = role.Id }) 
+          @Html.ActionLink("Edit", "Edit", new { id = role.Id })
+        }
+
+      </td>
+    }
   </table>
     <h5>@Html.ActionLink("Create role", "Create", "Role", new { area = "" }, new { @class = "btn btn-dark" })</h5>
 </div>

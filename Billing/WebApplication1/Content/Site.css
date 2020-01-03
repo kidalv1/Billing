@@ -48,6 +48,15 @@ h2{
   background-color:#605252;
   color : black;
 }
+.reason {
+  width: 500px;
+}
+.search{
+  float :right;
+}
+.btn btn-outline-secondary, .searchBtn {
+  margin-left: 10px;
+}
 @media print {
   @page {
     margin: 0;

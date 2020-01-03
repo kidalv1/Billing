@@ -34,6 +34,10 @@ namespace WebApplication1.Controllers
           try
           {
             Invoice i = invoiceBLL.FindById(invoice.Id);
+        if (i.Finished || !i.Active)
+        {
+          return RedirectToAction("index", "invoice");
+        }
             ViewBag.invoiceId = i.Id;
             ViewBag.invoiceCode = i.InvoiceCode;
             ViewBag.Invoices = invoiceBLL.GetNotFinishedInvoices();

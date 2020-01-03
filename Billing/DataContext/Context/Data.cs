@@ -22,13 +22,14 @@ namespace DataContext
     {
       //Configure default schema
       modelBuilder.HasDefaultSchema("dbo");
-
       //Map entity to table
       modelBuilder.Configurations.Add(new CustomerConfiguration());
       modelBuilder.Configurations.Add(new VatConfiguration());
       modelBuilder.Configurations.Add(new DetailLineConfiguration());
       modelBuilder.Configurations.Add(new InvoiceConfiguration());
-      
+      modelBuilder.Entity<Vat>().MapToStoredProcedures();
+      base.OnModelCreating(modelBuilder);
+
     }
   }
 }

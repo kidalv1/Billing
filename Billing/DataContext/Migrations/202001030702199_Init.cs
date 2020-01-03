@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -28,10 +28,10 @@
                         Date = c.DateTime(nullable: false, storeType: "date"),
                         Reason = c.String(maxLength: 8000, unicode: false),
                         Active = c.Boolean(nullable: false),
-                        User = c.String(nullable: false, maxLength: 8000, unicode: false),
                         InvoiceCode = c.String(nullable: false, maxLength: 8000, unicode: false),
+                        Finished = c.Boolean(nullable: false),
                         CustomerId = c.Int(nullable: false),
-                        UserId = c.Int(nullable: false),
+                        User = c.String(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Customer", t => t.CustomerId, cascadeDelete: true)
@@ -64,10 +64,57 @@
                     })
                 .PrimaryKey(t => t.ID);
             
+            CreateStoredProcedure(
+                "dbo.Vat_Insert",
+                p => new
+                    {
+                        Percentage = p.Int(),
+                    },
+                body:
+                    @"INSERT [dbo].[VAT]([Percentage])
+                      VALUES (@Percentage)
+                      
+                      DECLARE @ID int
+                      SELECT @ID = [ID]
+                      FROM [dbo].[VAT]
+                      WHERE @@ROWCOUNT > 0 AND [ID] = scope_identity()
+                      
+                      SELECT t0.[ID]
+                      FROM [dbo].[VAT] AS t0
+                      WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
+            );
+            
+            CreateStoredProcedure(
+                "dbo.Vat_Update",
+                p => new
+                    {
+                        ID = p.Int(),
+                        Percentage = p.Int(),
+                    },
+                body:
+                    @"UPDATE [dbo].[VAT]
+                      SET [Percentage] = @Percentage
+                      WHERE ([ID] = @ID)"
+            );
+            
+            CreateStoredProcedure(
+                "dbo.Vat_Delete",
+                p => new
+                    {
+                        ID = p.Int(),
+                    },
+                body:
+                    @"DELETE [dbo].[VAT]
+                      WHERE ([ID] = @ID)"
+            );
+            
         }
         
         public override void Down()
         {
+            DropStoredProcedure("dbo.Vat_Delete");
+            DropStoredProcedure("dbo.Vat_Update");
+            DropStoredProcedure("dbo.Vat_Insert");
             DropForeignKey("dbo.DetailLine", "VatId", "dbo.VAT");
             DropForeignKey("dbo.DetailLine", "InvoiceId", "dbo.Invoice");
             DropForeignKey("dbo.Invoice", "CustomerId", "dbo.Customer");
