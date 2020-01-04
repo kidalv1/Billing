@@ -10,14 +10,14 @@ namespace Billing.BLL
 {
   public class DetailLineBLL
   {
-    DetailLineRepo detailLineRepo;
-    InvoiceRepo invoiceRepo;
-    VatRepo vatRepo;
+    private DetailLineRepo _detailLineRepo;
+    private InvoiceRepo invoiceRepo;
+    private VatRepo _vatRepo;
     public DetailLineBLL()
     {
-      vatRepo = new VatRepo();
+      _vatRepo = new VatRepo();
       invoiceRepo = new InvoiceRepo();
-      detailLineRepo = new DetailLineRepo();
+      _detailLineRepo = new DetailLineRepo();
     }
 
     public void CreateDetailLine(DetailLine detailLine , int idOfVat , string invoiceCode)
@@ -25,12 +25,12 @@ namespace Billing.BLL
       Invoice invoice = invoiceRepo.findByInvoiceCode(invoiceCode);
       detailLine.InvoiceId = invoice.Id;
       detailLine.VatId = idOfVat;
-      this.detailLineRepo.Add(detailLine);
+      this._detailLineRepo.Add(detailLine);
     }
 
     public List<DetailLine> GetAll()
     {
-      return detailLineRepo.GetAll();
+      return _detailLineRepo.GetAll();
     }
 
     public double GetPriceOfDetailLineWithVat(DetailLine detailLine)
@@ -56,8 +56,8 @@ namespace Billing.BLL
 
     public DetailLine FindById(int id)
     {
-      DetailLine detailLine = detailLineRepo.FindById(id);
-      detailLine.Vat = vatRepo.FindById(detailLine.VatId);
+      DetailLine detailLine = _detailLineRepo.FindById(id);
+      detailLine.Vat = _vatRepo.FindById(detailLine.VatId);
 
 
       return detailLine;
@@ -66,12 +66,12 @@ namespace Billing.BLL
     public void RemoveDetailLine(DetailLine detailLine)
     {
 
-      detailLineRepo.Remove(FindById(detailLine.Id));
+      _detailLineRepo.Remove(FindById(detailLine.Id));
     }
 
     public void EdtiDetailLine(DetailLine detailLine)
     {
-      detailLineRepo.Edit(detailLine);
+      _detailLineRepo.Edit(detailLine);
     }
   }
 }

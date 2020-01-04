@@ -13,15 +13,15 @@ namespace WebApplication1.Controllers
   [Authorize(Roles = "Admin")]
   public class RoleController : Controller
     {
-    ApplicationDbContext context;
+    private ApplicationDbContext _context;
     public RoleController()
     {
-      context = new ApplicationDbContext();
+      _context = new ApplicationDbContext();
     }
 
     public ActionResult Index()
     {
-      var Roles = context.Roles.ToList();
+      var Roles = _context.Roles.ToList();
       return View(Roles);
     }
 
@@ -35,15 +35,15 @@ namespace WebApplication1.Controllers
     [ValidateAntiForgeryToken]
     public ActionResult Create(IdentityRole Role)
     {
-      var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-      context.Roles.Add(Role);
-      context.SaveChanges();
+      var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(_context));
+      _context.Roles.Add(Role);
+      _context.SaveChanges();
       return RedirectToAction("Index");
     }
     [HttpGet]
     public ActionResult Delete(string id)
     {
-      IdentityRole role = context.Roles.Find(id);
+      IdentityRole role = _context.Roles.Find(id);
        if(role.Name.ToLower() == "admin")
       {
         return RedirectToAction("index");
@@ -56,16 +56,16 @@ namespace WebApplication1.Controllers
     public ActionResult Delete(IdentityRole role)
     {
       
-      context.Entry(role).State = EntityState.Deleted;
-      context.Roles.Remove(role);
-      context.SaveChanges();
+      _context.Entry(role).State = EntityState.Deleted;
+      _context.Roles.Remove(role);
+      _context.SaveChanges();
       return RedirectToAction("index");
     }
 
 
     public ActionResult Edit(string id)
     {
-      IdentityRole role = context.Roles.Find(id);
+      IdentityRole role = _context.Roles.Find(id);
       if (role.Name.ToLower() == "admin")
       {
         return RedirectToAction("index");
@@ -77,9 +77,9 @@ namespace WebApplication1.Controllers
     [ActionName("Edit")]
     public ActionResult Edit(IdentityRole role)
     {
-      IdentityRole newRole = context.Roles.Find(role.Id);
+      IdentityRole newRole = _context.Roles.Find(role.Id);
       newRole.Name = role.Name;
-        context.SaveChanges();
+        _context.SaveChanges();
          return RedirectToAction("index");
     }
   }

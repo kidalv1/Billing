@@ -10,19 +10,19 @@ namespace Billing.BLL
 {
   public class VatBLL
   {
-    VatRepo vatRepo;
+    private VatRepo _vatRepo;
     public VatBLL()
     {
-      vatRepo = new VatRepo();
+      _vatRepo = new VatRepo();
     }
 
     public void Create(Vat vat)
     {
-      vatRepo.Add(vat);
+      _vatRepo.Add(vat);
     }
     public List<Vat> GetVats()
     {
-      return vatRepo.GetAll();
+      return _vatRepo.GetAll();
     }
   }
 }

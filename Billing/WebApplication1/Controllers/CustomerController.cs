@@ -8,16 +8,16 @@ namespace WebApplication1.Controllers
   [Authorize]
   public class CustomerController : Controller
     {
-    CustomerBLL customerBLL;
+    private CustomerBLL _customerBLL;
     public CustomerController()
     {
-      customerBLL = new CustomerBLL();
+      _customerBLL = new CustomerBLL();
     }
         // GET: Custumer
         public ActionResult Index()
         {
       
-            return View(customerBLL.GetVisibilityCustomers());
+            return View(_customerBLL.GetVisibilityCustomers());
         }
     public ActionResult CreateCustomer()
     {
@@ -29,17 +29,17 @@ namespace WebApplication1.Controllers
     public ActionResult CreateCustomer(Customer customer)
     {
 
-      customerBLL.AddCustomer(customer);
+      _customerBLL.AddCustomer(customer);
       return RedirectToAction("Index");
     }
 
     public ActionResult Detail(int id)
     {
-      return View(customerBLL.FindById(id));
+      return View(_customerBLL.FindById(id));
     }
     public ActionResult Delete(int id)
     {
-      return View(customerBLL.FindById(id));
+      return View(_customerBLL.FindById(id));
     }
 
     [HttpPost]
@@ -47,19 +47,19 @@ namespace WebApplication1.Controllers
     [ActionName("Delete")]
     public ActionResult DeleteCostumer(int id)
     {
-      customerBLL.RemoveCustomer(customerBLL.FindById(id));
+      _customerBLL.RemoveCustomer(_customerBLL.FindById(id));
       return RedirectToAction("Index");
     }
 
     public ActionResult Edit(int id)
     {
-      return View(customerBLL.FindById(id));
+      return View(_customerBLL.FindById(id));
     }
     [HttpPost]
     [ValidateAntiForgeryToken]
     public ActionResult Edit(Customer customer)
     {
-      customerBLL.EditCustomer(customer);
+      _customerBLL.EditCustomer(customer);
       return RedirectToAction("Index");
     }
   }

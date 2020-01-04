@@ -13,29 +13,29 @@ namespace WebApplication1.Controllers
   [Authorize]
   public class InvoiceController : Controller
   {
-    CustomerBLL customerBLL;
-    InvoiceBLL invoiceBLL;
+    private CustomerBLL _customerBLL;
+    private InvoiceBLL _invoiceBLL;
     public InvoiceController()
     {
-      customerBLL = new CustomerBLL();
-      invoiceBLL = new InvoiceBLL();
+      _customerBLL = new CustomerBLL();
+      _invoiceBLL = new InvoiceBLL();
     }
     public ActionResult Index(string search)
     {
 
       if (!String.IsNullOrEmpty(search))
       {
-        return View(invoiceBLL.FindByNameOrEmail(search));
+        return View(_invoiceBLL.FindByNameOrEmail(search));
       }
       
-        return View(invoiceBLL.GetVisibilityInvoice());
+        return View(_invoiceBLL.GetVisibilityInvoice());
       
 
       
     }
     public ActionResult Create()
     {
-      ViewBag.cutomers = customerBLL.GetVisibilityCustomers();
+      ViewBag.cutomers = _customerBLL.GetVisibilityCustomers();
       return View();
     }
 
@@ -52,24 +52,24 @@ namespace WebApplication1.Controllers
     public ActionResult Create(Invoice invoice)
     {
       string idOfCustomer = Request.Form["customers"];
-      invoiceBLL.AddInvoice(invoice, User.Identity.Name , int.Parse(idOfCustomer));
+      _invoiceBLL.AddInvoice(invoice, User.Identity.Name , int.Parse(idOfCustomer));
       return RedirectToAction("Index");
     }
 
     public ActionResult Delete(int id)
     {
-      ViewBag.priceWithoutVAT = invoiceBLL.GetTotalPrice(id);
-      ViewBag.priceWithVat = invoiceBLL.GetTotalPriceWithVAT(id);
-      return View(invoiceBLL.FindById(id));
+      ViewBag.priceWithoutVAT = _invoiceBLL.GetTotalPrice(id);
+      ViewBag.priceWithVat = _invoiceBLL.GetTotalPriceWithVAT(id);
+      return View(_invoiceBLL.FindById(id));
     }
     public ActionResult Details(int id)
     {
-      Invoice invoice = invoiceBLL.FindById(id);
+      Invoice invoice = _invoiceBLL.FindById(id);
       ViewBag.invoice = invoice;
-      ViewBag.priceWithoutVAT = invoiceBLL.GetTotalPrice(id);
-      ViewBag.priceWithVat = invoiceBLL.GetTotalPriceWithVAT(id);
-      ViewBag.pricesWithoutVat = invoiceBLL.GetPriceOfDatailLineOfInvoiceWithoutVat(id);
-      ViewBag.prices = invoiceBLL.GetPriceOfDatailLineOfInvoiceWithVat(id);
+      ViewBag.priceWithoutVAT = _invoiceBLL.GetTotalPrice(id);
+      ViewBag.priceWithVat = _invoiceBLL.GetTotalPriceWithVAT(id);
+      ViewBag.pricesWithoutVat = _invoiceBLL.GetPriceOfDatailLineOfInvoiceWithoutVat(id);
+      ViewBag.prices = _invoiceBLL.GetPriceOfDatailLineOfInvoiceWithVat(id);
       return View(invoice);
     }
 
@@ -79,20 +79,20 @@ namespace WebApplication1.Controllers
     public ActionResult DeleteInvoice(int id)
     {
       
-      if (invoiceBLL.FindById(id).DetailLines.Count > 0)
+      if (_invoiceBLL.FindById(id).DetailLines.Count > 0)
       {
         string reason = Request.Form["reason"];
-        invoiceBLL.RemoveInvoice(id, reason);
+        _invoiceBLL.RemoveInvoice(id, reason);
       }
       else
       {
-        invoiceBLL.RemoveInvoice(id);
+        _invoiceBLL.RemoveInvoice(id);
       }
       return RedirectToAction("Index");
     }
     public ActionResult Edit(int id)
     {
-      Invoice invoice = invoiceBLL.FindById(id);
+      Invoice invoice = _invoiceBLL.FindById(id);
       if (invoice.Finished)
       {
         return RedirectToAction("Index");
@@ -106,7 +106,7 @@ namespace WebApplication1.Controllers
     [ValidateAntiForgeryToken]
     public ActionResult Edit(Invoice invoice)
     {
-      invoiceBLL.EditInvoice(invoice);
+      _invoiceBLL.EditInvoice(invoice);
       return RedirectToAction("Index");
     }
 

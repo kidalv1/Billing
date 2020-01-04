@@ -10,10 +10,10 @@ namespace WebApplication1.Controllers
 {
     public class VatController : Controller
     {
-        VatBLL vatBll;
+        private VatBLL _vatBll;
         public VatController()
         {
-          vatBll = new VatBLL();
+          _vatBll = new VatBLL();
         }
         // GET: Vat
         public ActionResult Create()
@@ -23,7 +23,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Create(Vat vat)
         {
-          vatBll.Create(vat);
+          _vatBll.Create(vat);
           return RedirectToAction("Index", "Invoice");
         }
     }

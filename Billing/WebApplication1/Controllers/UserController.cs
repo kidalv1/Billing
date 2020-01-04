@@ -12,30 +12,30 @@ namespace WebApplication1.Controllers
 {
     public class UserController : Controller
     {
-        ApplicationDbContext context;
+        private ApplicationDbContext _context;
         public UserController()
         {
-            context = new ApplicationDbContext();
+            _context = new ApplicationDbContext();
         }
         // GET: User
 
 
         public ActionResult Edit(string id)
         { 
-          return View(context.Users.Find(User.Identity.GetUserId()));
+          return View(_context.Users.Find(User.Identity.GetUserId()));
         }
 
         [HttpPost]
         public ActionResult Edit(ApplicationUser user)
         {
-          context.Entry(user).State = EntityState.Modified;
-          context.SaveChanges();
+          _context.Entry(user).State = EntityState.Modified;
+          _context.SaveChanges();
           return RedirectToAction("Detail");
         }
 
         public ActionResult Detail()
         {
-          return View(context.Users.Find(User.Identity.GetUserId()));
+          return View(_context.Users.Find(User.Identity.GetUserId()));
         }
     }
 }

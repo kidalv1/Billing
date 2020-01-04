@@ -11,32 +11,32 @@ namespace Billing.BLL
 {
     public class CustomerBLL
     {
-    CustomerRepo customerRepo;
+    private CustomerRepo _customerRepo;
     public CustomerBLL()
     {
-      customerRepo = new CustomerRepo();
+      _customerRepo = new CustomerRepo();
     }
     public void AddCustomer(Customer customer)
     {
-      customerRepo.Add(customer);
+      _customerRepo.Add(customer);
     }
 
     public List<Customer> GetVisibilityCustomers()
     {
-      return customerRepo.GetVisibilityCustomers();
+      return _customerRepo.GetVisibilityCustomers();
     }
     public Customer FindById(int id)
     {
-      return customerRepo.FindById(id);
+      return _customerRepo.FindById(id);
     }
     public void RemoveCustomer(Customer customer)
     {
-      customerRepo.Remove(customer);
+      _customerRepo.Remove(customer);
     }
 
     public void EditCustomer(Customer customer)
     {
-      customerRepo.Edit(customer);
+      _customerRepo.Edit(customer);
     }
 
     }

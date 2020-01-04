@@ -14,34 +14,34 @@ namespace WebApplication1.Controllers
   [Authorize]
   public class DetailLineController : Controller
     {
-    DetailLineBLL detailLineBLL;
-    VatBLL vatBLL;
-    InvoiceBLL invoiceBLL;
+    private DetailLineBLL _detailLineBLL;
+    private VatBLL _vatBLL;
+    private InvoiceBLL _invoiceBLL;
     public DetailLineController()
     {
-      this.invoiceBLL = new InvoiceBLL();
-      this.vatBLL = new VatBLL();
-      this.detailLineBLL = new DetailLineBLL();
+      this._invoiceBLL = new InvoiceBLL();
+      this._vatBLL = new VatBLL();
+      this._detailLineBLL = new DetailLineBLL();
     }
         // GET: DetailLine
         public ActionResult Index()
         {
           
-          return View(detailLineBLL.GetAll());
+          return View(_detailLineBLL.GetAll());
         }
         public ActionResult Create(Invoice invoice)
         {
           try
           {
-            Invoice i = invoiceBLL.FindById(invoice.Id);
+            Invoice i = _invoiceBLL.FindById(invoice.Id);
         if (i.Finished || !i.Active)
         {
           return RedirectToAction("index", "invoice");
         }
             ViewBag.invoiceId = i.Id;
             ViewBag.invoiceCode = i.InvoiceCode;
-            ViewBag.Invoices = invoiceBLL.GetNotFinishedInvoices();
-            ViewBag.Vats = vatBLL.GetVats();
+            ViewBag.Invoices = _invoiceBLL.GetNotFinishedInvoices();
+            ViewBag.Vats = _vatBLL.GetVats();
           }
           catch
           {
@@ -59,7 +59,7 @@ namespace WebApplication1.Controllers
       int idOfInvoice = detailLine.Id;
       string invoiceCode = Request.Form["Invoice"];
       int idOfVat = int.Parse(Request.Form["Vat"]);
-      detailLineBLL.CreateDetailLine(detailLine, idOfVat ,invoiceCode );
+      _detailLineBLL.CreateDetailLine(detailLine, idOfVat ,invoiceCode );
       
       
       return RedirectToAction("Details" , "Invoice", new{@id = idOfInvoice});
@@ -67,14 +67,14 @@ namespace WebApplication1.Controllers
 
     public ActionResult Details(int id)
     {
-      DetailLine detailLine = detailLineBLL.FindById(id);
-      ViewBag.priceWithoutVAT = detailLineBLL.GetPriceOfDetailLineWithoutVat(detailLine);
-      ViewBag.priceWithVat = detailLineBLL.GetPriceOfDetailLineWithVat(detailLine);
+      DetailLine detailLine = _detailLineBLL.FindById(id);
+      ViewBag.priceWithoutVAT = _detailLineBLL.GetPriceOfDetailLineWithoutVat(detailLine);
+      ViewBag.priceWithVat = _detailLineBLL.GetPriceOfDetailLineWithVat(detailLine);
       return View(detailLine);
     }
     public ActionResult Edit(int id)
     {
-      DetailLine detailLine = detailLineBLL.FindById(id);
+      DetailLine detailLine = _detailLineBLL.FindById(id);
       return View(detailLine);
     }
 
@@ -82,20 +82,20 @@ namespace WebApplication1.Controllers
     [ValidateAntiForgeryToken]
     public ActionResult Edit(DetailLine detailLine)
     {
-      detailLineBLL.EdtiDetailLine(detailLine);
-      return RedirectToAction("Details", "Invoice", new { @id = detailLineBLL.FindById(detailLine.Id).InvoiceId });
+      _detailLineBLL.EdtiDetailLine(detailLine);
+      return RedirectToAction("Details", "Invoice", new { @id = _detailLineBLL.FindById(detailLine.Id).InvoiceId });
 
     }
     public ActionResult Delete(int id)
     {
-      return View(detailLineBLL.FindById(id));
+      return View(_detailLineBLL.FindById(id));
     }
     [HttpPost]
     [ValidateAntiForgeryToken]
     public ActionResult Delete(DetailLine detailLine)
     {
-      int invoiceId = detailLineBLL.FindById(detailLine.Id).InvoiceId;
-      detailLineBLL.RemoveDetailLine(detailLine);
+      int invoiceId = _detailLineBLL.FindById(detailLine.Id).InvoiceId;
+      _detailLineBLL.RemoveDetailLine(detailLine);
       return RedirectToAction("Details", "Invoice", new { @id = invoiceId });
 
     }
